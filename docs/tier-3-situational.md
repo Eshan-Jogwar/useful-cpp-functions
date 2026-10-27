@@ -5,30 +5,32 @@ These functions and data structures are situational, but when needed, they can t
 ---
 
 ## Table of Contents
-41. [`oset` (`find_by_order`, `order_of_key`)](#41-oset-find_by_order-order_of_key)
-42. [`__builtin_add_overflow`, `__builtin_mul_overflow`](#42-__builtin_add_overflow-__builtin_mul_overflow)
-43. [`partition_point`](#43-partition_point)
-44. [`ranges::sort` and C++20 Ranges](#44-rangessort-and-c20-ranges)
-45. [`equal_range`](#45-equal_range)
-46. [`make_heap`, `push_heap`, `pop_heap`](#46-make_heap-push_heap-pop_heap)
-47. [`set_intersection`, `set_union`, `set_difference`](#47-set_intersection-set_union-set_difference)
-48. [`transform`, `for_each`](#48-transform-for_each)
-49. [`adjacent_difference`](#49-adjacent_difference)
-50. [`inner_product`](#50-inner_product)
-51. [`clamp`](#51-clamp)
-52. [`shuffle`](#52-shuffle)
-53. [`partial_sort`](#53-partial_sort)
-54. [`lexicographical_compare`](#54-lexicographical_compare)
-55. [`bit_width`, `has_single_bit`, `countr_zero`](#55-bit_width-has_single_bit-countr_zero)
-56. [`gp_hash_table` (Policy-Based Data Structures)](#56-gp_hash_table-policy-based-data-structures)
-57. [`chrono::steady_clock`](#57-chronosteady_clock)
-58. [`assert`](#58-assert)
+41. [[TC: O(log N) | SC: O(N)] `oset` (`find_by_order`, `order_of_key`)](#41-tc-olog-n--sc-on-oset-find_by_order-order_of_key)
+42. [[TC: O(1) | SC: O(1)] `__builtin_add_overflow`, `__builtin_mul_overflow`](#42-tc-o1--sc-o1-__builtin_add_overflow-__builtin_mul_overflow)
+43. [[TC: O(log N) | SC: O(1)] `partition_point`](#43-tc-olog-n--sc-o1-partition_point)
+44. [[TC: O(N log N) | SC: O(log N)] `ranges::sort` and C++20 Ranges](#44-tc-on-log-n--sc-olog-n-rangessort-and-c20-ranges)
+45. [[TC: O(log N) | SC: O(1)] `equal_range`](#45-tc-olog-n--sc-o1-equal_range)
+46. [[TC: O(N) / O(log N) | SC: O(1)] `make_heap`, `push_heap`, `pop_heap`](#46-tc-on--olog-n--sc-o1-make_heap-push_heap-pop_heap)
+47. [[TC: O(N + M) | SC: O(1) aux] `set_intersection`, `set_union`, `set_difference`](#47-tc-on--m--sc-o1-aux-set_intersection-set_union-set_difference)
+48. [[TC: O(N) | SC: O(1) aux] `transform`, `for_each`](#48-tc-on--sc-o1-aux-transform-for_each)
+49. [[TC: O(N) | SC: O(1) aux] `adjacent_difference`](#49-tc-on--sc-o1-aux-adjacent_difference)
+50. [[TC: O(N) | SC: O(1)] `inner_product`](#50-tc-on--sc-o1-inner_product)
+51. [[TC: O(1) | SC: O(1)] `clamp`](#51-tc-o1--sc-o1-clamp)
+52. [[TC: O(N) | SC: O(1)] `shuffle`](#52-tc-on--sc-o1-shuffle)
+53. [[TC: O(N log K) | SC: O(1)] `partial_sort`](#53-tc-on-log-k--sc-o1-partial_sort)
+54. [[TC: O(min(N, M)) | SC: O(1)] `lexicographical_compare`](#54-tc-ominn-m--sc-o1-lexicographical_compare)
+55. [[TC: O(1) | SC: O(1)] `bit_width`, `has_single_bit`, `countr_zero`](#55-tc-o1--sc-o1-bit_width-has_single_bit-countr_zero)
+56. [[TC: O(1) avg | SC: O(N)] `gp_hash_table` (PB_DS)](#56-tc-o1-avg--sc-on-gp_hash_table-pb_ds)
+57. [[TC: O(1) | SC: O(1)] `chrono::steady_clock`](#57-tc-o1--sc-o1-chronosteady_clock)
+58. [[TC: O(1) | SC: O(1)] `assert`](#58-tc-o1--sc-o1-assert)
 
 ---
 
-### 41. `oset` (`find_by_order`, `order_of_key`)
-**What it does:** Policy-based data structure (PB_DS) ordered set that supports finding the $k$-th smallest element (`find_by_order`) and counting elements strictly smaller than $x$ (`order_of_key`) in $O(\log N)$ time.
-**Header:** `<ext/pb_ds/assoc_container.hpp>`, `<ext/pb_ds/tree_policy.hpp>`
+### 41. [TC: O(log N) | SC: O(N)] `oset` (`find_by_order`, `order_of_key`)
+- **Time Complexity:** $O(\log N)$ for `order_of_key`, `find_by_order`, `insert`, and `erase`.
+- **Space Complexity:** $O(N)$
+- **Header:** `<ext/pb_ds/assoc_container.hpp>`, `<ext/pb_ds/tree_policy.hpp>`
+- **What it does:** Policy-based data structure (PB_DS) ordered set that supports finding the $k$-th smallest element (`find_by_order`) and counting elements strictly smaller than $x$ (`order_of_key`) in $O(\log N)$ time.
 
 ```cpp
 #include <iostream>
@@ -59,9 +61,11 @@ Elements < 10: 2
 
 ---
 
-### 42. `__builtin_add_overflow`, `__builtin_mul_overflow`
-**What it does:** Performs arithmetic operations and returns `true` if an overflow occurred, safely writing the wrapped result to an output pointer.
-**Header:** Compiler built-in (GCC/Clang)
+### 42. [TC: O(1) | SC: O(1)] `__builtin_add_overflow`, `__builtin_mul_overflow`
+- **Time Complexity:** $O(1)$ single CPU flag inspection.
+- **Space Complexity:** $O(1)$
+- **Header:** Compiler built-in (GCC/Clang)
+- **What it does:** Performs arithmetic operations and returns `true` if an overflow occurred, safely writing the wrapped result to an output pointer.
 
 ```cpp
 #include <iostream>
@@ -79,9 +83,11 @@ int main() {
 
 ---
 
-### 43. `partition_point`
-**What it does:** Performs binary search on a range partitioned by a predicate to find the first element where the predicate evaluates to `false` in $O(\log N)$ steps.
-**Header:** `<algorithm>`
+### 43. [TC: O(log N) | SC: O(1)] `partition_point`
+- **Time Complexity:** $O(\log N)$ on random access iterators.
+- **Space Complexity:** $O(1)$
+- **Header:** `<algorithm>`
+- **What it does:** Performs binary search on a range partitioned by a predicate to find the first element where the predicate evaluates to `false` in $O(\log N)$ steps.
 
 ```cpp
 #include <iostream>
@@ -103,9 +109,11 @@ int main() {
 
 ---
 
-### 44. `ranges::sort` and C++20 Ranges
-**What it does:** Modern C++20 range algorithms that eliminate boilerplate `.begin()` and `.end()`, supporting clean projection functions for sorting on struct attributes or pair members.
-**Header:** `<algorithm>`, `<vector>`
+### 44. [TC: O(N log N) | SC: O(log N)] `ranges::sort` and C++20 Ranges
+- **Time Complexity:** $O(N \log N)$
+- **Space Complexity:** $O(\log N)$
+- **Header:** `<algorithm>`, `<vector>`
+- **What it does:** Modern C++20 range algorithms that eliminate boilerplate `.begin()` and `.end()`, supporting clean projection functions for sorting on struct attributes or pair members.
 
 ```cpp
 #include <iostream>
@@ -132,9 +140,11 @@ int main() {
 
 ---
 
-### 45. `equal_range`
-**What it does:** Combines `lower_bound` and `upper_bound` into a single $O(\log N)$ call, returning a pair of iterators `[first, last)` matching a target value in a sorted sequence.
-**Header:** `<algorithm>`
+### 45. [TC: O(log N) | SC: O(1)] `equal_range`
+- **Time Complexity:** $O(\log N)$ on random-access iterators.
+- **Space Complexity:** $O(1)$
+- **Header:** `<algorithm>`
+- **What it does:** Combines `lower_bound` and `upper_bound` into a single $O(\log N)$ call, returning a pair of iterators `[first, last)` matching a target value in a sorted sequence.
 
 ```cpp
 #include <iostream>
@@ -158,9 +168,11 @@ Total 4s: 3
 
 ---
 
-### 46. `make_heap`, `push_heap`, `pop_heap`
-**What it does:** Raw binary heap operations directly on contiguous memory (like `std::vector`), avoiding container overhead and enabling fast custom heap manipulations.
-**Header:** `<algorithm>`
+### 46. [TC: O(N) / O(log N) | SC: O(1)] `make_heap`, `push_heap`, `pop_heap`
+- **Time Complexity:** `make_heap`: $O(N)$; `push_heap` & `pop_heap`: $O(\log N)$.
+- **Space Complexity:** $O(1)$ in-place auxiliary.
+- **Header:** `<algorithm>`
+- **What it does:** Raw binary heap operations directly on contiguous memory (like `std::vector`), avoiding container overhead and enabling fast custom heap manipulations.
 
 ```cpp
 #include <iostream>
@@ -191,9 +203,11 @@ New top after pop: 9
 
 ---
 
-### 47. `set_intersection`, `set_union`, `set_difference`
-**What it does:** Performs classic mathematical set operations on two pre-sorted ranges in linear $O(N + M)$ time.
-**Header:** `<algorithm>`
+### 47. [TC: O(N + M) | SC: O(1) aux] `set_intersection`, `set_union`, `set_difference`
+- **Time Complexity:** $O(N + M)$ on sorted ranges.
+- **Space Complexity:** $O(1)$ auxiliary (excluding output container).
+- **Header:** `<algorithm>`
+- **What it does:** Performs classic mathematical set operations on two pre-sorted ranges in linear $O(N + M)$ time.
 
 ```cpp
 #include <iostream>
@@ -216,9 +230,11 @@ int main() {
 
 ---
 
-### 48. `transform`, `for_each`
-**What it does:** `transform` applies a transformation function across one or two ranges and stores the results; `for_each` executes a side-effecting callable on each element.
-**Header:** `<algorithm>`
+### 48. [TC: O(N) | SC: O(1) aux] `transform`, `for_each`
+- **Time Complexity:** $O(N)$
+- **Space Complexity:** $O(1)$ auxiliary.
+- **Header:** `<algorithm>`
+- **What it does:** `transform` applies a transformation function across one or two ranges and stores the results; `for_each` executes a side-effecting callable on each element.
 
 ```cpp
 #include <iostream>
@@ -239,9 +255,11 @@ int main() {
 
 ---
 
-### 49. `adjacent_difference`
-**What it does:** Computes the difference between each element and its predecessor in $O(N)$ time; effectively computes the difference array (inverse of prefix sum).
-**Header:** `<numeric>`
+### 49. [TC: O(N) | SC: O(1) aux] `adjacent_difference`
+- **Time Complexity:** $O(N)$
+- **Space Complexity:** $O(1)$ auxiliary memory.
+- **Header:** `<numeric>`
+- **What it does:** Computes the difference between each element and its predecessor in $O(N)$ time; effectively computes the difference array (inverse of prefix sum).
 
 ```cpp
 #include <iostream>
@@ -262,9 +280,11 @@ int main() {
 
 ---
 
-### 50. `inner_product`
-**What it does:** Computes the sum of products of corresponding elements from two ranges (the dot product) in $O(N)$ time.
-**Header:** `<numeric>`
+### 50. [TC: O(N) | SC: O(1)] `inner_product`
+- **Time Complexity:** $O(N)$
+- **Space Complexity:** $O(1)$
+- **Header:** `<numeric>`
+- **What it does:** Computes the sum of products of corresponding elements from two ranges (the dot product) in $O(N)$ time.
 
 ```cpp
 #include <iostream>
@@ -284,9 +304,11 @@ int main() {
 
 ---
 
-### 51. `clamp`
-**What it does:** Constrains a value within a given lower and upper bound in $O(1)$ time (C++17), equivalent to `max(lo, min(val, hi))`.
-**Header:** `<algorithm>`
+### 51. [TC: O(1) | SC: O(1)] `clamp`
+- **Time Complexity:** $O(1)$
+- **Space Complexity:** $O(1)$
+- **Header:** `<algorithm>`
+- **What it does:** Constrains a value within a given lower and upper bound in $O(1)$ time (C++17), equivalent to `max(lo, min(val, hi))`.
 
 ```cpp
 #include <iostream>
@@ -303,9 +325,11 @@ int main() {
 
 ---
 
-### 52. `shuffle`
-**What it does:** Randomly reorders elements in a range in $O(N)$ time using a modern random number engine (replaces legacy `std::random_shuffle`).
-**Header:** `<algorithm>`, `<random>`
+### 52. [TC: O(N) | SC: O(1)] `shuffle`
+- **Time Complexity:** $O(N)$
+- **Space Complexity:** $O(1)$ in-place.
+- **Header:** `<algorithm>`, `<random>`
+- **What it does:** Randomly reorders elements in a range in $O(N)$ time using a modern random number engine (replaces legacy `std::random_shuffle`).
 
 ```cpp
 #include <iostream>
@@ -326,9 +350,11 @@ int main() {
 
 ---
 
-### 53. `partial_sort`
-**What it does:** Rearranges elements so that the first $K$ positions hold the smallest $K$ elements in sorted order in $O(N \log K)$ time, faster than full sorting when $K \ll N$.
-**Header:** `<algorithm>`
+### 53. [TC: O(N log K) | SC: O(1)] `partial_sort`
+- **Time Complexity:** $O(N \log K)$ where $K$ is the distance from `first` to `middle`.
+- **Space Complexity:** $O(1)$ in-place auxiliary.
+- **Header:** `<algorithm>`
+- **What it does:** Rearranges elements so that the first $K$ positions hold the smallest $K$ elements in sorted order in $O(N \log K)$ time, faster than full sorting when $K \ll N$.
 
 ```cpp
 #include <iostream>
@@ -349,9 +375,11 @@ int main() {
 
 ---
 
-### 54. `lexicographical_compare`
-**What it does:** Checks if one sequence is lexicographically strictly less than another sequence in $O(\min(N, M))$ time.
-**Header:** `<algorithm>`
+### 54. [TC: O(min(N, M)) | SC: O(1)] `lexicographical_compare`
+- **Time Complexity:** $O(\min(N, M))$
+- **Space Complexity:** $O(1)$
+- **Header:** `<algorithm>`
+- **What it does:** Checks if one sequence is lexicographically strictly less than another sequence in $O(\min(N, M))$ time.
 
 ```cpp
 #include <iostream>
@@ -371,9 +399,11 @@ int main() {
 
 ---
 
-### 55. `bit_width`, `has_single_bit`, `countr_zero`
-**What it does:** Standard C++20 bit-manipulation library (`<bit>`) functions: `bit_width` finds required bits ($\lfloor \log_2(x) \rfloor + 1$), `has_single_bit` checks power of 2, and `countr_zero` counts trailing zeros.
-**Header:** `<bit>`
+### 55. [TC: O(1) | SC: O(1)] `bit_width`, `has_single_bit`, `countr_zero`
+- **Time Complexity:** $O(1)$ single CPU instruction.
+- **Space Complexity:** $O(1)$
+- **Header:** `<bit>`
+- **What it does:** Standard C++20 bit-manipulation library (`<bit>`) functions: `bit_width` finds required bits ($\lfloor \log_2(x) \rfloor + 1$), `has_single_bit` checks power of 2, and `countr_zero` counts trailing zeros.
 
 ```cpp
 #include <iostream>
@@ -396,9 +426,11 @@ countr_zero(16): 4
 
 ---
 
-### 56. `gp_hash_table` (Policy-Based Data Structures)
-**What it does:** High-performance hash table from GCC's PB_DS using open-addressing / probing; typically 3x to 6x faster than `std::unordered_map` with lower memory overhead.
-**Header:** `<ext/pb_ds/assoc_container.hpp>`
+### 56. [TC: O(1) avg | SC: O(N)] `gp_hash_table` (PB_DS)
+- **Time Complexity:** $O(1)$ average for insertions and lookups (3-5x faster constant factors than `std::unordered_map`).
+- **Space Complexity:** $O(N)$
+- **Header:** `<ext/pb_ds/assoc_container.hpp>`
+- **What it does:** High-performance hash table from GCC's PB_DS using open-addressing / probing; typically 3x to 6x faster than `std::unordered_map` with lower memory overhead.
 
 ```cpp
 #include <iostream>
@@ -419,9 +451,11 @@ int main() {
 
 ---
 
-### 57. `chrono::steady_clock`
-**What it does:** Monotonic clock unaffected by system clock adjustments; ideal for benchmarking execution time or enforcing a strict time limit before TLE.
-**Header:** `<chrono>`
+### 57. [TC: O(1) | SC: O(1)] `chrono::steady_clock`
+- **Time Complexity:** $O(1)$ native clock read.
+- **Space Complexity:** $O(1)$
+- **Header:** `<chrono>`
+- **What it does:** Monotonic clock unaffected by system clock adjustments; ideal for benchmarking execution time or enforcing a strict time limit before TLE.
 
 ```cpp
 #include <iostream>
@@ -444,9 +478,11 @@ int main() {
 
 ---
 
-### 58. `assert`
-**What it does:** Evaluates a boolean expression and immediately aborts program execution with diagnostics if false; invaluable for verifying preconditions, loop invariants, and constraints.
-**Header:** `<cassert>`
+### 58. [TC: O(1) | SC: O(1)] `assert`
+- **Time Complexity:** $O(1)$ evaluation (compiled out in release mode with `-DNDEBUG`).
+- **Space Complexity:** $O(1)$
+- **Header:** `<cassert>`
+- **What it does:** Evaluates a boolean expression and immediately aborts program execution with diagnostics if false; invaluable for verifying preconditions, loop invariants, and constraints.
 
 ```cpp
 #include <iostream>

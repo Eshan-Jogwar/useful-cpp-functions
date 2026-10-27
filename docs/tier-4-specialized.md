@@ -5,42 +5,44 @@ These functions and language features are rarely required on standard problems, 
 ---
 
 ## Table of Contents
-59. [`search`](#59-search)
-60. [`adjacent_find`](#60-adjacent_find)
-61. [`mismatch`](#61-mismatch)
-62. [`is_permutation`](#62-is_permutation)
-63. [`reduce`](#63-reduce)
-64. [`transform_reduce`](#64-transform_reduce)
-65. [`inclusive_scan`](#65-inclusive_scan)
-66. [`exclusive_scan`](#66-exclusive_scan)
-67. [`lround`](#67-lround)
-68. [`atan2`](#68-atan2)
-69. [`hypot`](#69-hypot)
-70. [`cbrt`](#70-cbrt)
-71. [`fmod`](#71-fmod)
-72. [`copy_if`](#72-copy_if)
-73. [`remove_if`](#73-remove_if)
-74. [`replace`](#74-replace)
-75. [`generate`](#75-generate)
-76. [`exchange`](#76-exchange)
-77. [`m.extract`](#77-mextract)
-78. [`m.merge`](#78-mmerge)
-79. [`from_chars`](#79-from_chars)
-80. [`string_view`](#80-string_view)
-81. [`span`](#81-span)
-82. [`optional`](#82-optional)
-83. [`variant`](#83-variant)
-84. [`views::*` (C++20 Ranges)](#84-views-c20-ranges)
-85. [`rotl`, `rotr`](#85-rotl-rotr)
-86. [`bit_ceil`](#86-bit_ceil)
-87. [`_Find_first`, `_Find_next` (std::bitset)](#87-_find_first-_find_next-stdbitset)
-88. [`list`, `forward_list`](#88-list-forward_list)
+59. [[TC: O(N * M) | SC: O(1)] `search`](#59-tc-on--m--sc-o1-search)
+60. [[TC: O(N) | SC: O(1)] `adjacent_find`](#60-tc-on--sc-o1-adjacent_find)
+61. [[TC: O(min(N, M)) | SC: O(1)] `mismatch`](#61-tc-ominn-m--sc-o1-mismatch)
+62. [[TC: O(N^2) / O(N) | SC: O(1)] `is_permutation`](#62-tc-on2--on--sc-o1-is_permutation)
+63. [[TC: O(N) | SC: O(1)] `reduce`](#63-tc-on--sc-o1-reduce)
+64. [[TC: O(N) | SC: O(1)] `transform_reduce`](#64-tc-on--sc-o1-transform_reduce)
+65. [[TC: O(N) | SC: O(1) aux] `inclusive_scan`](#65-tc-on--sc-o1-aux-inclusive_scan)
+66. [[TC: O(N) | SC: O(1) aux] `exclusive_scan`](#66-tc-on--sc-o1-aux-exclusive_scan)
+67. [[TC: O(1) | SC: O(1)] `lround`](#67-tc-o1--sc-o1-lround)
+68. [[TC: O(1) | SC: O(1)] `atan2`](#68-tc-o1--sc-o1-atan2)
+69. [[TC: O(1) | SC: O(1)] `hypot`](#69-tc-o1--sc-o1-hypot)
+70. [[TC: O(1) | SC: O(1)] `cbrt`](#70-tc-o1--sc-o1-cbrt)
+71. [[TC: O(1) | SC: O(1)] `fmod`](#71-tc-o1--sc-o1-fmod)
+72. [[TC: O(N) | SC: O(1) aux] `copy_if`](#72-tc-on--sc-o1-aux-copy_if)
+73. [[TC: O(N) | SC: O(1)] `remove_if`](#73-tc-on--sc-o1-remove_if)
+74. [[TC: O(N) | SC: O(1)] `replace`](#74-tc-on--sc-o1-replace)
+75. [[TC: O(N) | SC: O(1)] `generate`](#75-tc-on--sc-o1-generate)
+76. [[TC: O(1) | SC: O(1)] `exchange`](#76-tc-o1--sc-o1-exchange)
+77. [[TC: O(log N) / O(1) | SC: O(1)] `m.extract`](#77-tc-olog-n--o1--sc-o1-mextract)
+78. [[TC: O(N log(M+N)) | SC: O(1)] `m.merge`](#78-tc-on-logmn--sc-o1-mmerge)
+79. [[TC: O(len) | SC: O(1)] `from_chars`](#79-tc-olen--sc-o1-from_chars)
+80. [[TC: O(1) | SC: 16B] `string_view`](#80-tc-o1--sc-16b-string_view)
+81. [[TC: O(1) | SC: 16B] `span`](#81-tc-o1--sc-16b-span)
+82. [[TC: O(1) | SC: O(1)] `optional`](#82-tc-o1--sc-o1-optional)
+83. [[TC: O(1) | SC: O(1)] `variant`](#83-tc-o1--sc-o1-variant)
+84. [[TC: O(1) lazy | SC: O(1)] `views::*` (C++20 Ranges)](#84-tc-o1-lazy--sc-o1-views-c20-ranges)
+85. [[TC: O(1) | SC: O(1)] `rotl`, `rotr`](#85-tc-o1--sc-o1-rotl-rotr)
+86. [[TC: O(1) | SC: O(1)] `bit_ceil`](#86-tc-o1--sc-o1-bit_ceil)
+87. [[TC: O(N/64) | SC: O(1)] `_Find_first`, `_Find_next` (std::bitset)](#87-tc-on64--sc-o1-_find_first-_find_next-stdbitset)
+88. [[TC: O(1) | SC: O(N)] `list`, `forward_list`](#88-tc-o1--sc-on-list-forward_list)
 
 ---
 
-### 59. `search`
-**What it does:** Searches for the first occurrence of a sub-sequence within a sequence in $O(N \times M)$ time.
-**Header:** `<algorithm>`
+### 59. [TC: O(N * M) | SC: O(1)] `search`
+- **Time Complexity:** $O(N \times M)$ worst-case.
+- **Space Complexity:** $O(1)$
+- **Header:** `<algorithm>`
+- **What it does:** Searches for the first occurrence of a sub-sequence within a sequence in $O(N \times M)$ time.
 
 ```cpp
 #include <iostream>
@@ -60,9 +62,11 @@ int main() {
 
 ---
 
-### 60. `adjacent_find`
-**What it does:** Searches for the first occurrence of two consecutive identical or predicate-satisfying elements in $O(N)$ time.
-**Header:** `<algorithm>`
+### 60. [TC: O(N) | SC: O(1)] `adjacent_find`
+- **Time Complexity:** $O(N)$
+- **Space Complexity:** $O(1)$
+- **Header:** `<algorithm>`
+- **What it does:** Searches for the first occurrence of two consecutive identical or predicate-satisfying elements in $O(N)$ time.
 
 ```cpp
 #include <iostream>
@@ -81,9 +85,11 @@ int main() {
 
 ---
 
-### 61. `mismatch`
-**What it does:** Compares two ranges simultaneously and returns a pair of iterators pointing to the first differing elements.
-**Header:** `<algorithm>`
+### 61. [TC: O(min(N, M)) | SC: O(1)] `mismatch`
+- **Time Complexity:** $O(\min(N, M))$
+- **Space Complexity:** $O(1)$
+- **Header:** `<algorithm>`
+- **What it does:** Compares two ranges simultaneously and returns a pair of iterators pointing to the first differing elements.
 
 ```cpp
 #include <iostream>
@@ -103,9 +109,11 @@ int main() {
 
 ---
 
-### 62. `is_permutation`
-**What it does:** Checks whether one sequence is a multiset rearrangement (permutation) of another sequence in $O(N^2)$ or $O(N)$ hash time.
-**Header:** `<algorithm>`
+### 62. [TC: O(N^2) / O(N) | SC: O(1)] `is_permutation`
+- **Time Complexity:** $O(N^2)$ worst case; $O(N)$ if sequences are already equal.
+- **Space Complexity:** $O(1)$
+- **Header:** `<algorithm>`
+- **What it does:** Checks whether one sequence is a multiset rearrangement (permutation) of another sequence in $O(N^2)$ or $O(N)$ hash time.
 
 ```cpp
 #include <iostream>
@@ -125,9 +133,11 @@ int main() {
 
 ---
 
-### 63. `reduce`
-**What it does:** Out-of-order, parallelizable reduction algorithm (C++17) similar to `accumulate`, but does not require sequential processing.
-**Header:** `<numeric>`
+### 63. [TC: O(N) | SC: O(1)] `reduce`
+- **Time Complexity:** $O(N)$
+- **Space Complexity:** $O(1)$
+- **Header:** `<numeric>`
+- **What it does:** Out-of-order, parallelizable reduction algorithm (C++17) similar to `accumulate`, but does not require sequential processing.
 
 ```cpp
 #include <iostream>
@@ -145,9 +155,11 @@ int main() {
 
 ---
 
-### 64. `transform_reduce`
-**What it does:** Applies a transform operation to range elements and reduces the transformed results in a single fused pass (C++17).
-**Header:** `<numeric>`
+### 64. [TC: O(N) | SC: O(1)] `transform_reduce`
+- **Time Complexity:** $O(N)$
+- **Space Complexity:** $O(1)$
+- **Header:** `<numeric>`
+- **What it does:** Applies a transform operation to range elements and reduces the transformed results in a single fused pass (C++17).
 
 ```cpp
 #include <iostream>
@@ -166,9 +178,11 @@ int main() {
 
 ---
 
-### 65. `inclusive_scan`
-**What it does:** Computes inclusive prefix sums / prefix operations in $O(N)$ time (the $i$-th output includes element $i$), with parallel support (C++17).
-**Header:** `<numeric>`
+### 65. [TC: O(N) | SC: O(1) aux] `inclusive_scan`
+- **Time Complexity:** $O(N)$
+- **Space Complexity:** $O(1)$ auxiliary memory.
+- **Header:** `<numeric>`
+- **What it does:** Computes inclusive prefix sums / prefix operations in $O(N)$ time (the $i$-th output includes element $i$), with parallel support (C++17).
 
 ```cpp
 #include <iostream>
@@ -188,9 +202,11 @@ int main() {
 
 ---
 
-### 66. `exclusive_scan`
-**What it does:** Computes exclusive prefix sums in $O(N)$ time where the $i$-th output includes only elements before index $i$ (C++17).
-**Header:** `<numeric>`
+### 66. [TC: O(N) | SC: O(1) aux] `exclusive_scan`
+- **Time Complexity:** $O(N)$
+- **Space Complexity:** $O(1)$ auxiliary memory.
+- **Header:** `<numeric>`
+- **What it does:** Computes exclusive prefix sums in $O(N)$ time where the $i$-th output includes only elements before index $i$ (C++17).
 
 ```cpp
 #include <iostream>
@@ -210,9 +226,11 @@ int main() {
 
 ---
 
-### 67. `lround`
-**What it does:** Rounds a floating-point number to the nearest integer value of type `long int`, halfway cases rounded away from zero.
-**Header:** `<cmath>`
+### 67. [TC: O(1) | SC: O(1)] `lround`
+- **Time Complexity:** $O(1)$ CPU instruction.
+- **Space Complexity:** $O(1)$
+- **Header:** `<cmath>`
+- **What it does:** Rounds a floating-point number to the nearest integer value of type `long int`, halfway cases rounded away from zero.
 
 ```cpp
 #include <iostream>
@@ -229,9 +247,11 @@ int main() {
 
 ---
 
-### 68. `atan2`
-**What it does:** Computes the full 4-quadrant arc tangent $\theta \in (-\pi, \pi]$ of $y/x$, handling division by zero and sign orientation automatically for geometry problems.
-**Header:** `<cmath>`
+### 68. [TC: O(1) | SC: O(1)] `atan2`
+- **Time Complexity:** $O(1)$
+- **Space Complexity:** $O(1)$
+- **Header:** `<cmath>`
+- **What it does:** Computes the full 4-quadrant arc tangent $\theta \in (-\pi, \pi]$ of $y/x$, handling division by zero and sign orientation automatically for geometry problems.
 
 ```cpp
 #include <iostream>
@@ -247,9 +267,11 @@ int main() {
 
 ---
 
-### 69. `hypot`
-**What it does:** Computes the Euclidean hypotenuse $\sqrt{x^2 + y^2}$ (and 3D $\sqrt{x^2 + y^2 + z^2}$ in C++17) accurately without intermediate underflow or overflow.
-**Header:** `<cmath>`
+### 69. [TC: O(1) | SC: O(1)] `hypot`
+- **Time Complexity:** $O(1)$
+- **Space Complexity:** $O(1)$
+- **Header:** `<cmath>`
+- **What it does:** Computes the Euclidean hypotenuse $\sqrt{x^2 + y^2}$ (and 3D $\sqrt{x^2 + y^2 + z^2}$ in C++17) accurately without intermediate underflow or overflow.
 
 ```cpp
 #include <iostream>
@@ -267,9 +289,11 @@ int main() {
 
 ---
 
-### 70. `cbrt`
-**What it does:** Computes the real cube root $\sqrt[3]{x}$, safely handling negative numbers without returning NaN.
-**Header:** `<cmath>`
+### 70. [TC: O(1) | SC: O(1)] `cbrt`
+- **Time Complexity:** $O(1)$
+- **Space Complexity:** $O(1)$
+- **Header:** `<cmath>`
+- **What it does:** Computes the real cube root $\sqrt[3]{x}$, safely handling negative numbers without returning NaN.
 
 ```cpp
 #include <iostream>
@@ -289,9 +313,11 @@ cbrt(-8.0): -2
 
 ---
 
-### 71. `fmod`
-**What it does:** Computes the floating-point remainder of division $x / y$ with the same sign as $x$.
-**Header:** `<cmath>`
+### 71. [TC: O(1) | SC: O(1)] `fmod`
+- **Time Complexity:** $O(1)$
+- **Space Complexity:** $O(1)$
+- **Header:** `<cmath>`
+- **What it does:** Computes the floating-point remainder of division $x / y$ with the same sign as $x$.
 
 ```cpp
 #include <iostream>
@@ -311,9 +337,11 @@ fmod(-5.3, 2.0): -1.3
 
 ---
 
-### 72. `copy_if`
-**What it does:** Copies only the elements from a source range that satisfy a given predicate into a destination container.
-**Header:** `<algorithm>`
+### 72. [TC: O(N) | SC: O(1) aux] `copy_if`
+- **Time Complexity:** $O(N)$
+- **Space Complexity:** $O(1)$ auxiliary.
+- **Header:** `<algorithm>`
+- **What it does:** Copies only the elements from a source range that satisfy a given predicate into a destination container.
 
 ```cpp
 #include <iostream>
@@ -336,9 +364,11 @@ int main() {
 
 ---
 
-### 73. `remove_if`
-**What it does:** Shifts elements that do not satisfy a predicate to the front in $O(N)$ time and returns the past-the-end iterator of remaining elements (use with `.erase()`).
-**Header:** `<algorithm>`
+### 73. [TC: O(N) | SC: O(1)] `remove_if`
+- **Time Complexity:** $O(N)$
+- **Space Complexity:** $O(1)$ in-place shifting.
+- **Header:** `<algorithm>`
+- **What it does:** Shifts elements that do not satisfy a predicate to the front in $O(N)$ time and returns the past-the-end iterator of remaining elements (use with `.erase()`).
 
 ```cpp
 #include <iostream>
@@ -358,9 +388,11 @@ int main() {
 
 ---
 
-### 74. `replace`
-**What it does:** Replaces all occurrences of an old value with a new value in a range in $O(N)$ time in-place.
-**Header:** `<algorithm>`
+### 74. [TC: O(N) | SC: O(1)] `replace`
+- **Time Complexity:** $O(N)$
+- **Space Complexity:** $O(1)$ in-place.
+- **Header:** `<algorithm>`
+- **What it does:** Replaces all occurrences of an old value with a new value in a range in $O(N)$ time in-place.
 
 ```cpp
 #include <iostream>
@@ -379,9 +411,11 @@ int main() {
 
 ---
 
-### 75. `generate`
-**What it does:** Populates a range by repeatedly invoking a generator function or stateful lambda.
-**Header:** `<algorithm>`
+### 75. [TC: O(N) | SC: O(1)] `generate`
+- **Time Complexity:** $O(N)$
+- **Space Complexity:** $O(1)$ auxiliary.
+- **Header:** `<algorithm>`
+- **What it does:** Populates a range by repeatedly invoking a generator function or stateful lambda.
 
 ```cpp
 #include <iostream>
@@ -405,9 +439,11 @@ int main() {
 
 ---
 
-### 76. `exchange`
-**What it does:** Replaces the value of an object with a new value and returns its previous value in $O(1)$ time (C++14).
-**Header:** `<utility>`
+### 76. [TC: O(1) | SC: O(1)] `exchange`
+- **Time Complexity:** $O(1)$
+- **Space Complexity:** $O(1)$
+- **Header:** `<utility>`
+- **What it does:** Replaces the value of an object with a new value and returns its previous value in $O(1)$ time (C++14).
 
 ```cpp
 #include <iostream>
@@ -425,9 +461,11 @@ int main() {
 
 ---
 
-### 77. `m.extract`
-**What it does:** Unlinks a node from a map or set without allocating/deallocating memory, allowing key alteration without invalidating values (C++17).
-**Header:** `<map>`, `<set>`
+### 77. [TC: O(log N) / O(1) | SC: O(1)] `m.extract`
+- **Time Complexity:** `std::map`/`set`: $O(\log N)$; `std::unordered_map`/`set`: $O(1)$ average.
+- **Space Complexity:** $O(1)$ (no node allocation/deallocation).
+- **Header:** `<map>`, `<set>`
+- **What it does:** Unlinks a node from a map or set without allocating/deallocating memory, allowing key alteration without invalidating values (C++17).
 
 ```cpp
 #include <iostream>
@@ -448,9 +486,11 @@ int main() {
 
 ---
 
-### 78. `m.merge`
-**What it does:** Splices all elements from another container into the current container without copying or allocating new nodes (C++17).
-**Header:** `<map>`, `<set>`
+### 78. [TC: O(N log(M+N)) | SC: O(1)] `m.merge`
+- **Time Complexity:** Ordered containers: $O(N \log(M + N))$; Unordered containers: $O(N)$ average.
+- **Space Complexity:** $O(1)$ auxiliary (node pointer transfers).
+- **Header:** `<map>`, `<set>`
+- **What it does:** Splices all elements from another container into the current container without copying or allocating new nodes (C++17).
 
 ```cpp
 #include <iostream>
@@ -470,9 +510,11 @@ int main() {
 
 ---
 
-### 79. `from_chars`
-**What it does:** High-performance, zero-allocation, locale-independent string-to-number parser (C++17); up to 10x faster than `stoi`/`sscanf`.
-**Header:** `<charconv>`
+### 79. [TC: O(len) | SC: O(1)] `from_chars`
+- **Time Complexity:** $O(D)$ where $D$ is the number of processed digit characters.
+- **Space Complexity:** $O(1)$ zero memory allocation.
+- **Header:** `<charconv>`
+- **What it does:** High-performance, zero-allocation, locale-independent string-to-number parser (C++17); up to 10x faster than `stoi`/`sscanf`.
 
 ```cpp
 #include <iostream>
@@ -492,9 +534,11 @@ int main() {
 
 ---
 
-### 80. `string_view`
-**What it does:** Non-owning, lightweight view of a character sequence; enables $O(1)$ slicing and sub-string passing without string copying or memory allocation (C++17).
-**Header:** `<string_view>`
+### 80. [TC: O(1) | SC: 16B] `string_view`
+- **Time Complexity:** $O(1)$ construction and substring slicing.
+- **Space Complexity:** $O(1)$ (stores only pointer + length, typically 16 bytes).
+- **Header:** `<string_view>`
+- **What it does:** Non-owning, lightweight view of a character sequence; enables $O(1)$ slicing and sub-string passing without string copying or memory allocation (C++17).
 
 ```cpp
 #include <iostream>
@@ -514,9 +558,11 @@ int main() {
 
 ---
 
-### 81. `span`
-**What it does:** Non-owning view over any contiguous sequence of elements (arrays, vectors) that encapsulates pointer and size safely (C++20).
-**Header:** `<span>`
+### 81. [TC: O(1) | SC: 16B] `span`
+- **Time Complexity:** $O(1)$ view creation and subspan indexing.
+- **Space Complexity:** $O(1)$ (stores only pointer + size, typically 16 bytes).
+- **Header:** `<span>`
+- **What it does:** Non-owning view over any contiguous sequence of elements (arrays, vectors) that encapsulates pointer and size safely (C++20).
 
 ```cpp
 #include <iostream>
@@ -546,13 +592,16 @@ int main() {
 
 ---
 
-### 82. `optional`
-**What it does:** Manages an optional value that may or may not be present without resorting to sentinel values like `-1` or `nullptr` (C++17).
-**Header:** `<optional>`
+### 82. [TC: O(1) | SC: O(1)] `optional`
+- **Time Complexity:** $O(1)$ access, assignment, and boolean checks.
+- **Space Complexity:** $O(1)$ (`sizeof(T) + sizeof(bool)`).
+- **Header:** `<optional>`
+- **What it does:** Manages an optional value that may or may not be present without resorting to sentinel values like `-1` or `nullptr` (C++17).
 
 ```cpp
 #include <iostream>
 #include <optional>
+#include <vector>
 
 std::optional<int> find_even(const std::vector<int>& v) {
     for (int x : v) if (x % 2 == 0) return x;
@@ -576,9 +625,11 @@ res2 value: 4
 
 ---
 
-### 83. `variant`
-**What it does:** Type-safe, union-like container holding a value of one of several specified types with index tracking (C++17).
-**Header:** `<variant>`
+### 83. [TC: O(1) | SC: O(1)] `variant`
+- **Time Complexity:** $O(1)$ assignment, visitation, and index retrieval.
+- **Space Complexity:** $O(1)$ ($\max(\text{sizeof}(T_i)) + \text{index discriminant}$).
+- **Header:** `<variant>`
+- **What it does:** Type-safe, union-like container holding a value of one of several specified types with index tracking (C++17).
 
 ```cpp
 #include <iostream>
@@ -602,9 +653,11 @@ Holds string: hello
 
 ---
 
-### 84. `views::*` (C++20 Ranges)
-**What it does:** Lazy, composable range adapters (like `views::iota`, `views::filter`, `views::transform`, `views::take`, `views::reverse`) that process sequences without temporary allocations.
-**Header:** `<ranges>`
+### 84. [TC: O(1) lazy | SC: O(1)] `views::*` (C++20 Ranges)
+- **Time Complexity:** $O(1)$ pipeline creation; $O(1)$ per step on lazy element iteration.
+- **Space Complexity:** $O(1)$ zero temporary container allocation.
+- **Header:** `<ranges>`
+- **What it does:** Lazy, composable range adapters (like `views::iota`, `views::filter`, `views::transform`, `views::take`, `views::reverse`) that process sequences without temporary allocations.
 
 ```cpp
 #include <iostream>
@@ -627,9 +680,11 @@ int main() {
 
 ---
 
-### 85. `rotl`, `rotr`
-**What it does:** Bitwise rotates an unsigned integer left (`rotl`) or right (`rotr`) by $s$ bits in $O(1)$ hardware instructions (C++20).
-**Header:** `<bit>`
+### 85. [TC: O(1) | SC: O(1)] `rotl`, `rotr`
+- **Time Complexity:** $O(1)$ single CPU bit-rotation instruction.
+- **Space Complexity:** $O(1)$
+- **Header:** `<bit>`
+- **What it does:** Bitwise rotates an unsigned integer left (`rotl`) or right (`rotr`) by $s$ bits in $O(1)$ hardware instructions (C++20).
 
 ```cpp
 #include <iostream>
@@ -648,9 +703,11 @@ int main() {
 
 ---
 
-### 86. `bit_ceil`
-**What it does:** Finds the smallest power of 2 greater than or equal to a given unsigned integer $x$ in $O(1)$ (C++20).
-**Header:** `<bit>`
+### 86. [TC: O(1) | SC: O(1)] `bit_ceil`
+- **Time Complexity:** $O(1)$ single CPU instruction.
+- **Space Complexity:** $O(1)$
+- **Header:** `<bit>`
+- **What it does:** Finds the smallest power of 2 greater than or equal to a given unsigned integer $x$ in $O(1)$ (C++20).
 
 ```cpp
 #include <iostream>
@@ -672,9 +729,11 @@ bit_ceil(17): 32
 
 ---
 
-### 87. `_Find_first`, `_Find_next` (`std::bitset`)
-**What it does:** Internal GCC extension methods on `std::bitset` that find the first set bit and next set bit efficiently, skipping blocks of 64 zeros.
-**Header:** `<bitset>`
+### 87. [TC: O(N/64) | SC: O(1)] `_Find_first`, `_Find_next` (`std::bitset`)
+- **Time Complexity:** $O(N/64)$ word-level checks; jumps directly to next set bit.
+- **Space Complexity:** $O(1)$
+- **Header:** `<bitset>`
+- **What it does:** Internal GCC extension methods on `std::bitset` that find the first set bit and next set bit efficiently, skipping blocks of 64 zeros.
 
 ```cpp
 #include <iostream>
@@ -696,9 +755,11 @@ int main() {
 
 ---
 
-### 88. `list`, `forward_list`
-**What it does:** Node-based linked lists (`list` is doubly-linked, `forward_list` is singly-linked); supports $O(1)$ splicing and node insertion/removal without iterator invalidation (essential for LRU cache).
-**Header:** `<list>`, `<forward_list>`
+### 88. [TC: O(1) | SC: O(N)] `list`, `forward_list`
+- **Time Complexity:** $O(1)$ for insertion, deletion, and splicing with given iterator.
+- **Space Complexity:** $O(N)$ with per-node pointer overhead (2 pointers for `list`, 1 pointer for `forward_list`).
+- **Header:** `<list>`, `<forward_list>`
+- **What it does:** Node-based linked lists (`list` is doubly-linked, `forward_list` is singly-linked); supports $O(1)$ splicing and node insertion/removal without iterator invalidation (essential for LRU cache).
 
 ```cpp
 #include <iostream>

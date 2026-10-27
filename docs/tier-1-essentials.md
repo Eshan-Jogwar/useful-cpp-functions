@@ -5,27 +5,29 @@ These functions and features are the absolute bedrock of competitive programming
 ---
 
 ## Table of Contents
-1. [`sort` (with custom comparator / lambda)](#1-sort-with-custom-comparator--lambda)
-2. [`vector`, `pair`, `emplace_back`](#2-vector-pair-emplace_back)
-3. [`map`, `set`, `unordered_map`, `unordered_set`](#3-map-set-unordered_map-unordered_set)
-4. [`priority_queue` (min-heap via `greater<>`)](#4-priority_queue-min-heap-via-greater)
-5. [`lower_bound` / `upper_bound`](#5-lower_bound--upper_bound)
-6. [`min`, `max`, `swap`](#6-min-max-swap)
-7. [`reverse`](#7-reverse)
-8. [`accumulate` (with `0LL`)](#8-accumulate-with-0ll)
-9. [`ios::sync_with_stdio(false); cin.tie(nullptr);`](#9-iossync_with_stdiofalse-cintienullptr)
-10. [`queue`, `stack`, `deque`](#10-queue-stack-deque)
-11. [`auto [a, b] = p;` (Structured Bindings)](#11-auto-a-b--p-structured-bindings)
-12. [`INT_MAX`, `LLONG_MAX`](#12-int_max-llong_max)
-13. [`memset`, `fill`](#13-memset-fill)
-14. [`to_string`, `stoi`, `substr`](#14-to_string-stoi-substr)
-15. [`#define all(x)`](#15-define-allx)
+1. [[TC: O(N log N) | SC: O(log N)] `sort` (with custom comparator / lambda)](#1-tc-on-log-n--sc-olog-n-sort-with-custom-comparator--lambda)
+2. [[TC: O(1) amortized | SC: O(N)] `vector`, `pair`, `emplace_back`](#2-tc-o1-amortized--sc-on-vector-pair-emplace_back)
+3. [[TC: O(log N) / O(1) | SC: O(N)] `map`, `set`, `unordered_map`, `unordered_set`](#3-tc-olog-n--o1--sc-on-map-set-unordered_map-unordered_set)
+4. [[TC: O(log N) | SC: O(N)] `priority_queue` (min-heap via `greater<>`)](#4-tc-olog-n--sc-on-priority_queue-min-heap-via-greater)
+5. [[TC: O(log N) | SC: O(1)] `lower_bound` / `upper_bound`](#5-tc-olog-n--sc-o1-lower_bound--upper_bound)
+6. [[TC: O(1) | SC: O(1)] `min`, `max`, `swap`](#6-tc-o1--sc-o1-min-max-swap)
+7. [[TC: O(N) | SC: O(1)] `reverse`](#7-tc-on--sc-o1-reverse)
+8. [[TC: O(N) | SC: O(1)] `accumulate` (with `0LL`)](#8-tc-on--sc-o1-accumulate-with-0ll)
+9. [[TC: O(1) | SC: O(1)] `ios::sync_with_stdio(false); cin.tie(nullptr);`](#9-tc-o1--sc-o1-iossync_with_stdiofalse-cintienullptr)
+10. [[TC: O(1) | SC: O(N)] `queue`, `stack`, `deque`](#10-tc-o1--sc-on-queue-stack-deque)
+11. [[TC: O(1) | SC: O(1)] `auto [a, b] = p;` (Structured Bindings)](#11-tc-o1--sc-o1-auto-a-b--p-structured-bindings)
+12. [[TC: O(1) | SC: O(1)] `INT_MAX`, `LLONG_MAX`](#12-tc-o1--sc-o1-int_max-llong_max)
+13. [[TC: O(N) | SC: O(1)] `memset`, `fill`](#13-tc-on--sc-o1-memset-fill)
+14. [[TC: O(len) | SC: O(len)] `to_string`, `stoi`, `substr`](#14-tc-olen--sc-olen-to_string-stoi-substr)
+15. [[TC: O(1) | SC: O(1)] `#define all(x)`](#15-tc-o1--sc-o1-define-allx)
 
 ---
 
-### 1. `sort` (with custom comparator / lambda)
-**What it does:** Sorts elements in a range in $O(N \log N)$ time; lambdas allow custom ordering such as sorting intervals, descending order, or multi-criteria sorting.
-**Header:** `<algorithm>`
+### 1. [TC: O(N log N) | SC: O(log N)] `sort` (with custom comparator / lambda)
+- **Time Complexity:** $O(N \log N)$
+- **Space Complexity:** $O(\log N)$ auxiliary (introsort recursion stack)
+- **Header:** `<algorithm>`
+- **What it does:** Sorts elements in a range in $O(N \log N)$ time; lambdas allow custom ordering such as sorting intervals, descending order, or multi-criteria sorting.
 
 ```cpp
 #include <iostream>
@@ -51,9 +53,11 @@ int main() {
 
 ---
 
-### 2. `vector`, `pair`, `emplace_back`
-**What it does:** `vector` is a dynamic array, `pair` stores two heterogeneous values, and `emplace_back` constructs elements directly in container memory avoiding copies.
-**Header:** `<vector>`, `<utility>`
+### 2. [TC: O(1) amortized | SC: O(N)] `vector`, `pair`, `emplace_back`
+- **Time Complexity:** $O(1)$ amortized for `emplace_back` and random access; $O(N)$ when reallocation occurs.
+- **Space Complexity:** $O(N)$
+- **Header:** `<vector>`, `<utility>`
+- **What it does:** `vector` is a dynamic array, `pair` stores two heterogeneous values, and `emplace_back` constructs elements directly in container memory avoiding copies.
 
 ```cpp
 #include <iostream>
@@ -76,9 +80,11 @@ int main() {
 
 ---
 
-### 3. `map`, `set`, `unordered_map`, `unordered_set`
-**What it does:** `map`/`set` store sorted unique keys in $O(\log N)$ using red-black trees; `unordered_map`/`unordered_set` provide average $O(1)$ lookups and frequency counting via hashing.
-**Header:** `<map>`, `<set>`, `<unordered_map>`, `<unordered_set>`
+### 3. [TC: O(log N) / O(1) | SC: O(N)] `map`, `set`, `unordered_map`, `unordered_set`
+- **Time Complexity:** `map`/`set`: $O(\log N)$ find/insert/delete; `unordered_map`/`unordered_set`: $O(1)$ average, $O(N)$ worst-case.
+- **Space Complexity:** $O(N)$
+- **Header:** `<map>`, `<set>`, `<unordered_map>`, `<unordered_set>`
+- **What it does:** `map`/`set` store sorted unique keys in $O(\log N)$ using red-black trees; `unordered_map`/`unordered_set` provide average $O(1)$ lookups and frequency counting via hashing.
 
 ```cpp
 #include <iostream>
@@ -106,9 +112,11 @@ set: 1 3 5
 
 ---
 
-### 4. `priority_queue` (min-heap via `greater<>`)
-**What it does:** Implements a binary heap providing $O(1)$ peek and $O(\log N)$ push/pop; defaults to max-heap, but `std::greater<T>` turns it into a min-heap.
-**Header:** `<queue>`
+### 4. [TC: O(log N) | SC: O(N)] `priority_queue` (min-heap via `greater<>`)
+- **Time Complexity:** $O(1)$ peek (`top`), $O(\log N)$ `push` and `pop`, $O(N)$ for range constructor (heapify).
+- **Space Complexity:** $O(N)$
+- **Header:** `<queue>`
+- **What it does:** Implements a binary heap providing $O(1)$ peek and $O(\log N)$ push/pop; defaults to max-heap, but `std::greater<T>` turns it into a min-heap.
 
 ```cpp
 #include <iostream>
@@ -131,9 +139,11 @@ int main() {
 
 ---
 
-### 5. `lower_bound` / `upper_bound`
-**What it does:** Binary search on sorted ranges: `lower_bound` finds the first element $\ge x$; `upper_bound` finds the first element $> x$ in $O(\log N)$ time.
-**Header:** `<algorithm>`
+### 5. [TC: O(log N) | SC: O(1)] `lower_bound` / `upper_bound`
+- **Time Complexity:** $O(\log N)$ on random access iterators (vector, array); $O(N)$ on forward lists/sets.
+- **Space Complexity:** $O(1)$
+- **Header:** `<algorithm>`
+- **What it does:** Binary search on sorted ranges: `lower_bound` finds the first element $\ge x$; `upper_bound` finds the first element $> x$ in $O(\log N)$ time.
 
 ```cpp
 #include <iostream>
@@ -158,9 +168,11 @@ upper_bound index: 4
 
 ---
 
-### 6. `min`, `max`, `swap`
-**What it does:** `min` and `max` return the minimum or maximum of 2 or more values (via initializer list); `swap` exchanges values or container contents in $O(1)$.
-**Header:** `<algorithm>`, `<utility>`
+### 6. [TC: O(1) | SC: O(1)] `min`, `max`, `swap`
+- **Time Complexity:** $O(1)$ (or $O(K)$ for initializer list of $K$ elements).
+- **Space Complexity:** $O(1)$
+- **Header:** `<algorithm>`, `<utility>`
+- **What it does:** `min` and `max` return the minimum or maximum of 2 or more values (via initializer list); `swap` exchanges values or container contents in $O(1)$.
 
 ```cpp
 #include <iostream>
@@ -185,9 +197,11 @@ a: 27, b: 15
 
 ---
 
-### 7. `reverse`
-**What it does:** Reverses the elements of a sequence in-place in $O(N)$ time; useful for palindrome verification and reconstructing shortest paths.
-**Header:** `<algorithm>`
+### 7. [TC: O(N) | SC: O(1)] `reverse`
+- **Time Complexity:** $O(N)$ where $N$ is the number of elements in the range.
+- **Space Complexity:** $O(1)$ in-place.
+- **Header:** `<algorithm>`
+- **What it does:** Reverses the elements of a sequence in-place in $O(N)$ time; useful for palindrome verification and reconstructing shortest paths.
 
 ```cpp
 #include <iostream>
@@ -205,9 +219,11 @@ int main() {
 
 ---
 
-### 8. `accumulate` (with `0LL`)
-**What it does:** Computes the sum of elements in a range; supplying `0LL` as the initial accumulator avoids 32-bit integer overflow.
-**Header:** `<numeric>`
+### 8. [TC: O(N) | SC: O(1)] `accumulate` (with `0LL`)
+- **Time Complexity:** $O(N)$
+- **Space Complexity:** $O(1)$
+- **Header:** `<numeric>`
+- **What it does:** Computes the sum of elements in a range; supplying `0LL` as the initial accumulator avoids 32-bit integer overflow.
 
 ```cpp
 #include <iostream>
@@ -226,9 +242,11 @@ int main() {
 
 ---
 
-### 9. `ios::sync_with_stdio(false); cin.tie(nullptr);`
-**What it does:** Disables synchronization between C++ standard streams and C `stdio`, and unties `cin` from `cout`, preventing I/O bottlenecks and TLE on large test cases.
-**Header:** `<iostream>`
+### 9. [TC: O(1) | SC: O(1)] `ios::sync_with_stdio(false); cin.tie(nullptr);`
+- **Time Complexity:** $O(1)$
+- **Space Complexity:** $O(1)$
+- **Header:** `<iostream>`
+- **What it does:** Disables synchronization between C++ standard streams and C `stdio`, and unties `cin` from `cout`, preventing I/O bottlenecks and TLE on large test cases.
 
 ```cpp
 #include <iostream>
@@ -248,9 +266,11 @@ int main() {
 
 ---
 
-### 10. `queue`, `stack`, `deque`
-**What it does:** Core linear adapters: `queue` (FIFO for BFS), `stack` (LIFO for DFS/monotonic stack), and `deque` (double-ended queue for sliding window maximum).
-**Header:** `<queue>`, `<stack>`, `<deque>`
+### 10. [TC: O(1) | SC: O(N)] `queue`, `stack`, `deque`
+- **Time Complexity:** $O(1)$ for push, pop, front, back, top.
+- **Space Complexity:** $O(N)$ where $N$ is the number of stored elements.
+- **Header:** `<queue>`, `<stack>`, `<deque>`
+- **What it does:** Core linear adapters: `queue` (FIFO for BFS), `stack` (LIFO for DFS/monotonic stack), and `deque` (double-ended queue for sliding window maximum).
 
 ```cpp
 #include <iostream>
@@ -278,9 +298,11 @@ deque back: 200
 
 ---
 
-### 11. `auto [a, b] = p;` (Structured Bindings)
-**What it does:** Unpacks pairs, tuples, or struct members into distinct named variables cleanly (C++17), eliminating verbose `.first` and `.second`.
-**Header:** Built-in C++17 language feature
+### 11. [TC: O(1) | SC: O(1)] `auto [a, b] = p;` (Structured Bindings)
+- **Time Complexity:** $O(1)$
+- **Space Complexity:** $O(1)$
+- **Header:** Built-in C++17 language feature
+- **What it does:** Unpacks pairs, tuples, or struct members into distinct named variables cleanly (C++17), eliminating verbose `.first` and `.second`.
 
 ```cpp
 #include <iostream>
@@ -304,9 +326,11 @@ Bob got 88
 
 ---
 
-### 12. `INT_MAX`, `LLONG_MAX`
-**What it does:** Defined in `<climits>` as the maximum values for 32-bit signed int ($\approx 2.14 \times 10^9$) and 64-bit signed long long ($\approx 9.22 \times 10^{18}$); used for minimum tracking.
-**Header:** `<climits>`
+### 12. [TC: O(1) | SC: O(1)] `INT_MAX`, `LLONG_MAX`
+- **Time Complexity:** $O(1)$ (compile-time constants)
+- **Space Complexity:** $O(1)$
+- **Header:** `<climits>`
+- **What it does:** Defined in `<climits>` as the maximum values for 32-bit signed int ($\approx 2.14 \times 10^9$) and 64-bit signed long long ($\approx 9.22 \times 10^{18}$); used for minimum tracking.
 
 ```cpp
 #include <iostream>
@@ -331,9 +355,11 @@ INT_MAX: 2147483647
 
 ---
 
-### 13. `memset`, `fill`
-**What it does:** `memset` sets blocks of memory byte-by-byte (fast for 0 and -1); `std::fill` sets any value across an iterator range safely.
-**Header:** `<cstring>` (for `memset`), `<algorithm>` (for `fill`)
+### 13. [TC: O(N) | SC: O(1)] `memset`, `fill`
+- **Time Complexity:** $O(N)$ where $N$ is byte count for `memset` or element count for `fill`.
+- **Space Complexity:** $O(1)$
+- **Header:** `<cstring>` (for `memset`), `<algorithm>` (for `fill`)
+- **What it does:** `memset` sets blocks of memory byte-by-byte (fast for 0 and -1); `std::fill` sets any value across an iterator range safely.
 
 ```cpp
 #include <iostream>
@@ -356,9 +382,11 @@ int main() {
 
 ---
 
-### 14. `to_string`, `stoi`, `substr`
-**What it does:** `to_string` converts numbers to strings, `stoi` parses numeric strings into integers, and `substr(pos, len)` extracts a sub-string.
-**Header:** `<string>`
+### 14. [TC: O(len) | SC: O(len)] `to_string`, `stoi`, `substr`
+- **Time Complexity:** `to_string`/`stoi`: $O(D)$ where $D$ is the number of digits; `substr(pos, len)`: $O(\text{len})$.
+- **Space Complexity:** $O(\text{len})$ for new string allocations.
+- **Header:** `<string>`
+- **What it does:** `to_string` converts numbers to strings, `stoi` parses numeric strings into integers, and `substr(pos, len)` extracts a sub-string.
 
 ```cpp
 #include <iostream>
@@ -378,9 +406,11 @@ int main() {
 
 ---
 
-### 15. `#define all(x)`
-**What it does:** Ubiquitous macro that expands to `(x).begin(), (x).end()`, reducing boilerplate code in algorithms.
-**Header:** Macro definition
+### 15. [TC: O(1) | SC: O(1)] `#define all(x)`
+- **Time Complexity:** $O(1)$ (preprocessor macro expansion)
+- **Space Complexity:** $O(1)$
+- **Header:** Macro definition
+- **What it does:** Ubiquitous macro that expands to `(x).begin(), (x).end()`, reducing boilerplate code in algorithms.
 
 ```cpp
 #include <iostream>

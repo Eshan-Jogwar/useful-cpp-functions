@@ -5,37 +5,39 @@ These functions and utilities appear frequently in medium to hard LeetCode probl
 ---
 
 ## Table of Contents
-16. [`*min_element`, `*max_element`](#16-min_element-max_element)
-17. [`unique` + `erase`](#17-unique--erase)
-18. [`iota`](#18-iota)
-19. [`gcd`, `lcm`](#19-gcd-lcm)
-20. [`__builtin_popcount(ll)`, `__builtin_ctz`, `__builtin_clz`](#20-__builtin_popcountll-__builtin_ctz-__builtin_clz)
-21. [`next_permutation`](#21-next_permutation)
-22. [`count`, `count_if`, `find`](#22-count-count_if-find)
-23. [`binary_search`](#23-binary_search)
-24. [`multiset`](#24-multiset)
-25. [`bitset`](#25-bitset)
-26. [`function<>` for recursive lambdas](#26-function-for-recursive-lambdas)
-27. [`tie`, `tuple`](#27-tie-tuple)
-28. [`partial_sum`](#28-partial_sum)
-29. [`sqrt`, `pow`, `abs`, `ceil`, `floor`](#29-sqrt-pow-abs-ceil-floor)
-30. [`isdigit`, `isalpha`, `tolower`, `toupper`](#30-isdigit-isalpha-tolower-toupper)
-31. [`getline`, `stringstream` / `istringstream`](#31-getline-stringstream--istringstream)
-32. [`mt19937`, `uniform_int_distribution`](#32-mt19937-uniform_int_distribution)
-33. [`rotate`](#33-rotate)
-34. [`all_of`, `any_of`, `none_of`](#34-all_of-any_of-none_of)
-35. [`nth_element`](#35-nth_element)
-36. [`__int128`](#36-__int128)
-37. [`emplace`, `m.contains()`, `try_emplace`](#37-emplace-mcontains-try_emplace)
-38. [`rbegin`, `*s.rbegin()`](#38-rbegin-srbegin)
-39. [`next`, `prev`, `distance`](#39-next-prev-distance)
-40. [`stable_sort`](#40-stable_sort)
+16. [[TC: O(N) | SC: O(1)] `*min_element`, `*max_element`](#16-tc-on--sc-o1-min_element-max_element)
+17. [[TC: O(N) | SC: O(1)] `unique` + `erase`](#17-tc-on--sc-o1-unique--erase)
+18. [[TC: O(N) | SC: O(1)] `iota`](#18-tc-on--sc-o1-iota)
+19. [[TC: O(log(min(a, b))) | SC: O(1)] `gcd`, `lcm`](#19-tc-ologmina-b--sc-o1-gcd-lcm)
+20. [[TC: O(1) | SC: O(1)] `__builtin_popcount(ll)`, `__builtin_ctz`, `__builtin_clz`](#20-tc-o1--sc-o1-__builtin_popcountll-__builtin_ctz-__builtin_clz)
+21. [[TC: O(N) | SC: O(1)] `next_permutation`](#21-tc-on--sc-o1-next_permutation)
+22. [[TC: O(N) | SC: O(1)] `count`, `count_if`, `find`](#22-tc-on--sc-o1-count-count_if-find)
+23. [[TC: O(log N) | SC: O(1)] `binary_search`](#23-tc-olog-n--sc-o1-binary_search)
+24. [[TC: O(log N) | SC: O(N)] `multiset`](#24-tc-olog-n--sc-on-multiset)
+25. [[TC: O(N/64) | SC: O(N/64)] `bitset`](#25-tc-on64--sc-on64-bitset)
+26. [[TC: O(1) call | SC: O(depth)] `function<>` for recursive lambdas](#26-tc-o1-call--sc-odepth-function-for-recursive-lambdas)
+27. [[TC: O(1) | SC: O(1)] `tie`, `tuple`](#27-tc-o1--sc-o1-tie-tuple)
+28. [[TC: O(N) | SC: O(1) aux] `partial_sum`](#28-tc-on--sc-o1-aux-partial_sum)
+29. [[TC: O(1) | SC: O(1)] `sqrt`, `pow`, `abs`, `ceil`, `floor`](#29-tc-o1--sc-o1-sqrt-pow-abs-ceil-floor)
+30. [[TC: O(1) | SC: O(1)] `isdigit`, `isalpha`, `tolower`, `toupper`](#30-tc-o1--sc-o1-isdigit-isalpha-tolower-toupper)
+31. [[TC: O(L) | SC: O(L)] `getline`, `stringstream` / `istringstream`](#31-tc-ol--sc-ol-getline-stringstream--istringstream)
+32. [[TC: O(1) | SC: O(1)] `mt19937`, `uniform_int_distribution`](#32-tc-o1--sc-o1-mt19937-uniform_int_distribution)
+33. [[TC: O(N) | SC: O(1)] `rotate`](#33-tc-on--sc-o1-rotate)
+34. [[TC: O(N) | SC: O(1)] `all_of`, `any_of`, `none_of`](#34-tc-on--sc-o1-all_of-any_of-none_of)
+35. [[TC: O(N) avg | SC: O(log N)] `nth_element`](#35-tc-on-avg--sc-olog-n-nth_element)
+36. [[TC: O(1) | SC: 16B] `__int128`](#36-tc-o1--sc-16b-__int128)
+37. [[TC: O(log N) / O(1) | SC: O(1)] `emplace`, `m.contains()`, `try_emplace`](#37-tc-olog-n--o1--sc-o1-emplace-mcontains-try_emplace)
+38. [[TC: O(1) | SC: O(1)] `rbegin`, `*s.rbegin()`](#38-tc-o1--sc-o1-rbegin-srbegin)
+39. [[TC: O(1) / O(k) | SC: O(1)] `next`, `prev`, `distance`](#39-tc-o1--ok--sc-o1-next-prev-distance)
+40. [[TC: O(N log N) | SC: O(N)] `stable_sort`](#40-tc-on-log-n--sc-on-stable_sort)
 
 ---
 
-### 16. `*min_element`, `*max_element`
-**What it does:** Finds the iterator to the smallest or largest element in a range in $O(N)$ time; dereference (`*`) to access the value.
-**Header:** `<algorithm>`
+### 16. [TC: O(N) | SC: O(1)] `*min_element`, `*max_element`
+- **Time Complexity:** $O(N)$
+- **Space Complexity:** $O(1)$
+- **Header:** `<algorithm>`
+- **What it does:** Finds the iterator to the smallest or largest element in a range in $O(N)$ time; dereference (`*`) to access the value.
 
 ```cpp
 #include <iostream>
@@ -55,9 +57,11 @@ int main() {
 
 ---
 
-### 17. `unique` + `erase`
-**What it does:** Standard C++ idiom that removes duplicate elements from a sorted container in $O(N)$ time by shifting unique elements and resizing.
-**Header:** `<algorithm>`, `<vector>`
+### 17. [TC: O(N) | SC: O(1)] `unique` + `erase`
+- **Time Complexity:** $O(N)$
+- **Space Complexity:** $O(1)$ in-place
+- **Header:** `<algorithm>`, `<vector>`
+- **What it does:** Standard C++ idiom that removes duplicate elements from a sorted container in $O(N)$ time by shifting unique elements and resizing.
 
 ```cpp
 #include <iostream>
@@ -77,9 +81,11 @@ int main() {
 
 ---
 
-### 18. `iota`
-**What it does:** Fills a range with sequentially increasing values starting from a base value in $O(N)$ time; ideal for Disjoint Set Union (DSU) parent initialization and index arrays.
-**Header:** `<numeric>`
+### 18. [TC: O(N) | SC: O(1)] `iota`
+- **Time Complexity:** $O(N)$
+- **Space Complexity:** $O(1)$ auxiliary
+- **Header:** `<numeric>`
+- **What it does:** Fills a range with sequentially increasing values starting from a base value in $O(N)$ time; ideal for Disjoint Set Union (DSU) parent initialization and index arrays.
 
 ```cpp
 #include <iostream>
@@ -98,9 +104,11 @@ int main() {
 
 ---
 
-### 19. `gcd`, `lcm`
-**What it does:** Calculates the greatest common divisor and least common multiple of two integers in logarithmic time using the Euclidean algorithm (C++17).
-**Header:** `<numeric>`
+### 19. [TC: O(log(min(a, b))) | SC: O(1)] `gcd`, `lcm`
+- **Time Complexity:** $O(\log(\min(a, b)))$ via Euclidean algorithm
+- **Space Complexity:** $O(1)$
+- **Header:** `<numeric>`
+- **What it does:** Calculates the greatest common divisor and least common multiple of two integers in logarithmic time using the Euclidean algorithm (C++17).
 
 ```cpp
 #include <iostream>
@@ -121,9 +129,11 @@ LCM: 36
 
 ---
 
-### 20. `__builtin_popcount(ll)`, `__builtin_ctz`, `__builtin_clz`
-**What it does:** Fast compiler intrinsics executed via single CPU instructions: `popcount` counts set bits (`1`s), `ctz` counts trailing zeros, and `clz` counts leading zeros.
-**Header:** Compiler built-in (GCC/Clang)
+### 20. [TC: O(1) | SC: O(1)] `__builtin_popcount(ll)`, `__builtin_ctz`, `__builtin_clz`
+- **Time Complexity:** $O(1)$ single CPU instruction
+- **Space Complexity:** $O(1)$
+- **Header:** Compiler built-in (GCC/Clang)
+- **What it does:** Fast compiler intrinsics executed via single CPU instructions: `popcount` counts set bits (`1`s), `ctz` counts trailing zeros, and `clz` counts leading zeros.
 
 ```cpp
 #include <iostream>
@@ -147,9 +157,11 @@ popcountll: 1
 
 ---
 
-### 21. `next_permutation`
-**What it does:** Reorders a sequence into the lexicographically next greater permutation in $O(N)$ time; returns `false` when the sequence is reversed back to ascending order.
-**Header:** `<algorithm>`
+### 21. [TC: O(N) | SC: O(1)] `next_permutation`
+- **Time Complexity:** $O(N)$ worst-case; amortized $O(1)$ over all $N!$ permutations
+- **Space Complexity:** $O(1)$ in-place
+- **Header:** `<algorithm>`
+- **What it does:** Reorders a sequence into the lexicographically next greater permutation in $O(N)$ time; returns `false` when the sequence is reversed back to ascending order.
 
 ```cpp
 #include <iostream>
@@ -169,9 +181,11 @@ int main() {
 
 ---
 
-### 22. `count`, `count_if`, `find`
-**What it does:** `count` counts occurrences of a value, `count_if` counts elements matching a boolean predicate, and `find` locates the first matching element.
-**Header:** `<algorithm>`
+### 22. [TC: O(N) | SC: O(1)] `count`, `count_if`, `find`
+- **Time Complexity:** $O(N)$
+- **Space Complexity:** $O(1)$
+- **Header:** `<algorithm>`
+- **What it does:** `count` counts occurrences of a value, `count_if` counts elements matching a boolean predicate, and `find` locates the first matching element.
 
 ```cpp
 #include <iostream>
@@ -192,9 +206,11 @@ int main() {
 
 ---
 
-### 23. `binary_search`
-**What it does:** Checks whether a target value exists within a sorted range in $O(\log N)$ time, returning a `bool`.
-**Header:** `<algorithm>`
+### 23. [TC: O(log N) | SC: O(1)] `binary_search`
+- **Time Complexity:** $O(\log N)$ on random access iterators
+- **Space Complexity:** $O(1)$
+- **Header:** `<algorithm>`
+- **What it does:** Checks whether a target value exists within a sorted range in $O(\log N)$ time, returning a `bool`.
 
 ```cpp
 #include <iostream>
@@ -219,9 +235,11 @@ int main() {
 
 ---
 
-### 24. `multiset`
-**What it does:** An ordered associative container that keeps elements sorted while permitting duplicates; supports $O(\log N)$ insertion, deletion, and search.
-**Header:** `<set>`
+### 24. [TC: O(log N) | SC: O(N)] `multiset`
+- **Time Complexity:** $O(\log N)$ for `insert`, `find`, and single-element `erase(iterator)`; $O(\log N + K)$ for `erase(val)` where $K$ copies exist.
+- **Space Complexity:** $O(N)$
+- **Header:** `<set>`
+- **What it does:** An ordered associative container that keeps elements sorted while permitting duplicates; supports $O(\log N)$ insertion, deletion, and search.
 
 ```cpp
 #include <iostream>
@@ -240,9 +258,11 @@ int main() {
 
 ---
 
-### 25. `bitset`
-**What it does:** Fixed-size sequence of $N$ bits with $O(N/64)$ space/time operations; ideal for subset sum DP, graph reachability, and boolean flags.
-**Header:** `<bitset>`
+### 25. [TC: O(N/64) | SC: O(N/64)] `bitset`
+- **Time Complexity:** $O(N/64)$ for bitwise ops (`&`, `|`, `^`, shift); $O(1)$ for single bit `test`, `set`, `flip`.
+- **Space Complexity:** $O(N/64)$ bytes ($N$ bits stored packed).
+- **Header:** `<bitset>`
+- **What it does:** Fixed-size sequence of $N$ bits with $O(N/64)$ space/time operations; ideal for subset sum DP, graph reachability, and boolean flags.
 
 ```cpp
 #include <iostream>
@@ -266,9 +286,11 @@ Flipped: 01001101
 
 ---
 
-### 26. `function<>` for recursive lambdas
-**What it does:** `std::function` encapsulates callable objects, allowing a lambda function to reference itself recursively without writing a separate helper method.
-**Header:** `<functional>`
+### 26. [TC: O(1) call | SC: O(depth)] `function<>` for recursive lambdas
+- **Time Complexity:** $O(1)$ dispatch overhead per invocation.
+- **Space Complexity:** $O(\text{recursion depth})$ on call stack.
+- **Header:** `<functional>`
+- **What it does:** `std::function` encapsulates callable objects, allowing a lambda function to reference itself recursively without writing a separate helper method.
 
 ```cpp
 #include <iostream>
@@ -288,9 +310,11 @@ int main() {
 
 ---
 
-### 27. `tie`, `tuple`
-**What it does:** `tuple` stores a fixed-size collection of heterogeneous values; `std::tie` unpacks tuples or creates lexicographical comparisons on the fly.
-**Header:** `<tuple>`
+### 27. [TC: O(1) | SC: O(1)] `tie`, `tuple`
+- **Time Complexity:** $O(K)$ where $K$ is the number of elements in the tuple.
+- **Space Complexity:** $O(1)$
+- **Header:** `<tuple>`
+- **What it does:** `tuple` stores a fixed-size collection of heterogeneous values; `std::tie` unpacks tuples or creates lexicographical comparisons on the fly.
 
 ```cpp
 #include <iostream>
@@ -312,9 +336,11 @@ int main() {
 
 ---
 
-### 28. `partial_sum`
-**What it does:** Computes the prefix sums of a range in $O(N)$ time, writing the running sums into another container or in-place.
-**Header:** `<numeric>`
+### 28. [TC: O(N) | SC: O(1) aux] `partial_sum`
+- **Time Complexity:** $O(N)$
+- **Space Complexity:** $O(1)$ auxiliary memory (or $O(N)$ for destination buffer).
+- **Header:** `<numeric>`
+- **What it does:** Computes the prefix sums of a range in $O(N)$ time, writing the running sums into another container or in-place.
 
 ```cpp
 #include <iostream>
@@ -334,9 +360,11 @@ int main() {
 
 ---
 
-### 29. `sqrt`, `pow`, `abs`, `ceil`, `floor`
-**What it does:** Standard mathematical functions: square root, exponentiation, absolute value, round up, and round down.
-**Header:** `<cmath>`, `<cstdlib>`
+### 29. [TC: O(1) | SC: O(1)] `sqrt`, `pow`, `abs`, `ceil`, `floor`
+- **Time Complexity:** $O(1)$ native CPU instructions.
+- **Space Complexity:** $O(1)$
+- **Header:** `<cmath>`, `<cstdlib>`
+- **What it does:** Standard mathematical functions: square root, exponentiation, absolute value, round up, and round down.
 
 ```cpp
 #include <iostream>
@@ -362,9 +390,11 @@ abs(-15): 15
 
 ---
 
-### 30. `isdigit`, `isalpha`, `tolower`, `toupper`
-**What it does:** Character classification and case-conversion functions from `<cctype>` for parsing strings and validating alphanumeric tokens.
-**Header:** `<cctype>`
+### 30. [TC: O(1) | SC: O(1)] `isdigit`, `isalpha`, `tolower`, `toupper`
+- **Time Complexity:** $O(1)$ table lookup / arithmetic.
+- **Space Complexity:** $O(1)$
+- **Header:** `<cctype>`
+- **What it does:** Character classification and case-conversion functions from `<cctype>` for parsing strings and validating alphanumeric tokens.
 
 ```cpp
 #include <iostream>
@@ -375,6 +405,7 @@ int main() {
     std::cout << "isdigit('7'): " << (bool)std::isdigit(c1) << "\n";
     std::cout << "isalpha('A'): " << (bool)std::isalpha(c2) << "\n";
     std::cout << "tolower('A'): " << (char)std::tolower(c2) << "\n";
+    std::toupper('b');
     std::cout << "toupper('b'): " << (char)std::toupper('b') << "\n";
 }
 ```
@@ -389,9 +420,11 @@ toupper('b'): B
 
 ---
 
-### 31. `getline`, `stringstream` / `istringstream`
-**What it does:** Reads full lines including spaces (`getline`) and splits strings into whitespace-delimited tokens using stream extraction.
-**Header:** `<string>`, `<sstream>`
+### 31. [TC: O(L) | SC: O(L)] `getline`, `stringstream` / `istringstream`
+- **Time Complexity:** $O(L)$ where $L$ is the number of characters processed.
+- **Space Complexity:** $O(L)$ internal stream buffer.
+- **Header:** `<string>`, `<sstream>`
+- **What it does:** Reads full lines including spaces (`getline`) and splits strings into whitespace-delimited tokens using stream extraction.
 
 ```cpp
 #include <iostream>
@@ -417,9 +450,11 @@ int main() {
 
 ---
 
-### 32. `mt19937`, `uniform_int_distribution`
-**What it does:** Fast 32/64-bit Mersenne Twister pseudo-random number generator; essential for randomized quickselect and anti-hash hacking defense.
-**Header:** `<random>`, `<chrono>`
+### 32. [TC: O(1) | SC: O(1)] `mt19937`, `uniform_int_distribution`
+- **Time Complexity:** $O(1)$ per random number generated.
+- **Space Complexity:** $O(1)$ generator state buffer (approx 2.5 KB).
+- **Header:** `<random>`, `<chrono>`
+- **What it does:** Fast 32/64-bit Mersenne Twister pseudo-random number generator; essential for randomized quickselect and anti-hash hacking defense.
 
 ```cpp
 #include <iostream>
@@ -438,9 +473,11 @@ int main() {
 
 ---
 
-### 33. `rotate`
-**What it does:** Left-rotates elements in a range in $O(N)$ time so that the element pointed to by the middle iterator becomes the new first element.
-**Header:** `<algorithm>`
+### 33. [TC: O(N) | SC: O(1)] `rotate`
+- **Time Complexity:** $O(N)$
+- **Space Complexity:** $O(1)$ in-place
+- **Header:** `<algorithm>`
+- **What it does:** Left-rotates elements in a range in $O(N)$ time so that the element pointed to by the middle iterator becomes the new first element.
 
 ```cpp
 #include <iostream>
@@ -460,9 +497,11 @@ int main() {
 
 ---
 
-### 34. `all_of`, `any_of`, `none_of`
-**What it does:** Tests whether all, any, or none of the elements in a range satisfy a given predicate with short-circuit evaluation.
-**Header:** `<algorithm>`
+### 34. [TC: O(N) | SC: O(1)] `all_of`, `any_of`, `none_of`
+- **Time Complexity:** $O(N)$ worst-case; short-circuits as soon as result is determined.
+- **Space Complexity:** $O(1)$
+- **Header:** `<algorithm>`
+- **What it does:** Tests whether all, any, or none of the elements in a range satisfy a given predicate with short-circuit evaluation.
 
 ```cpp
 #include <iostream>
@@ -483,9 +522,11 @@ int main() {
 
 ---
 
-### 35. `nth_element`
-**What it does:** Rearranges elements in $O(N)$ average time so that the $n$-th position has the element that would be there if fully sorted; all preceding elements are $\le$ and following elements are $\ge$.
-**Header:** `<algorithm>`
+### 35. [TC: O(N) avg | SC: O(log N)] `nth_element`
+- **Time Complexity:** $O(N)$ average and $O(N)$ worst-case via Introselect.
+- **Space Complexity:** $O(\log N)$ recursive call stack.
+- **Header:** `<algorithm>`
+- **What it does:** Rearranges elements in $O(N)$ average time so that the $n$-th position has the element that would be there if fully sorted; all preceding elements are $\le$ and following elements are $\ge$.
 
 ```cpp
 #include <iostream>
@@ -505,9 +546,11 @@ int main() {
 
 ---
 
-### 36. `__int128`
-**What it does:** GCC/Clang built-in 128-bit signed integer type to prevent overflow during intermediate calculations like $a \times b \pmod m$ or cross-multiplication.
-**Header:** Built-in GCC extension
+### 36. [TC: O(1) | SC: 16B] `__int128`
+- **Time Complexity:** $O(1)$ arithmetic operations.
+- **Space Complexity:** 16 bytes (128 bits) per variable.
+- **Header:** Built-in GCC extension
+- **What it does:** GCC/Clang built-in 128-bit signed integer type to prevent overflow during intermediate calculations like $a \times b \pmod m$ or cross-multiplication.
 
 ```cpp
 #include <iostream>
@@ -528,9 +571,11 @@ int main() {
 
 ---
 
-### 37. `emplace`, `m.contains()`, `try_emplace`
-**What it does:** Modern associative container methods: `contains()` (C++20) checks key existence cleanly; `try_emplace` inserts a key-value pair only if the key doesn't already exist without constructing the value unnecessarily.
-**Header:** `<map>`, `<unordered_map>`
+### 37. [TC: O(log N) / O(1) | SC: O(1)] `emplace`, `m.contains()`, `try_emplace`
+- **Time Complexity:** `std::map`: $O(\log N)$; `std::unordered_map`: $O(1)$ average.
+- **Space Complexity:** $O(1)$ auxiliary per call.
+- **Header:** `<map>`, `<unordered_map>`
+- **What it does:** Modern associative container methods: `contains()` (C++20) checks key existence cleanly; `try_emplace` inserts a key-value pair only if the key doesn't already exist without constructing the value unnecessarily.
 
 ```cpp
 #include <iostream>
@@ -556,9 +601,11 @@ mp[1]: one, mp[2]: two
 
 ---
 
-### 38. `rbegin`, `*s.rbegin()`
-**What it does:** Returns a reverse iterator to the last element of a container; allows accessing the maximum element of a sorted `std::set` or `std::map` in $O(1)$.
-**Header:** `<set>`, `<vector>`, `<iterator>`
+### 38. [TC: O(1) | SC: O(1)] `rbegin`, `*s.rbegin()`
+- **Time Complexity:** $O(1)$
+- **Space Complexity:** $O(1)$
+- **Header:** `<set>`, `<vector>`, `<iterator>`
+- **What it does:** Returns a reverse iterator to the last element of a container; allows accessing the maximum element of a sorted `std::set` or `std::map` in $O(1)$.
 
 ```cpp
 #include <iostream>
@@ -577,9 +624,11 @@ int main() {
 
 ---
 
-### 39. `next`, `prev`, `distance`
-**What it does:** Iterator helpers: `next`/`prev` return an iterator advanced forward or backward by $n$ steps without modifying the original; `distance` calculates the number of elements between two iterators.
-**Header:** `<iterator>`
+### 39. [TC: O(1) / O(k) | SC: O(1)] `next`, `prev`, `distance`
+- **Time Complexity:** `next`/`prev`: $O(1)$ on random-access iterators, $O(k)$ on bidirectional/forward; `distance`: $O(1)$ on random-access, $O(N)$ on others.
+- **Space Complexity:** $O(1)$
+- **Header:** `<iterator>`
+- **What it does:** Iterator helpers: `next`/`prev` return an iterator advanced forward or backward by $n$ steps without modifying the original; `distance` calculates the number of elements between two iterators.
 
 ```cpp
 #include <iostream>
@@ -605,9 +654,11 @@ distance: 3
 
 ---
 
-### 40. `stable_sort`
-**What it does:** Sorts elements in $O(N \log N)$ time while guaranteeing that equal elements retain their original relative order.
-**Header:** `<algorithm>`
+### 40. [TC: O(N log N) | SC: O(N)] `stable_sort`
+- **Time Complexity:** $O(N \log N)$ with extra buffer, $O(N \log^2 N)$ in-place.
+- **Space Complexity:** $O(N)$ temporary buffer.
+- **Header:** `<algorithm>`
+- **What it does:** Sorts elements in $O(N \log N)$ time while guaranteeing that equal elements retain their original relative order.
 
 ```cpp
 #include <iostream>
