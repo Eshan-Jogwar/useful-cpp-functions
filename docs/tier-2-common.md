@@ -5,35 +5,36 @@ These functions and utilities appear frequently in medium to hard LeetCode probl
 ---
 
 ## Table of Contents
-16. [[TC: O(N) | SC: O(1)] `*min_element`, `*max_element`](#16-tc-on--sc-o1-min_element-max_element)
-17. [[TC: O(N) | SC: O(1)] `unique` + `erase`](#17-tc-on--sc-o1-unique--erase)
-18. [[TC: O(N) | SC: O(1)] `iota`](#18-tc-on--sc-o1-iota)
-19. [[TC: O(log(min(a, b))) | SC: O(1)] `gcd`, `lcm`](#19-tc-ologmina-b--sc-o1-gcd-lcm)
-20. [[TC: O(1) | SC: O(1)] `__builtin_popcount(ll)`, `__builtin_ctz`, `__builtin_clz`](#20-tc-o1--sc-o1-__builtin_popcountll-__builtin_ctz-__builtin_clz)
-21. [[TC: O(N) | SC: O(1)] `next_permutation`](#21-tc-on--sc-o1-next_permutation)
-22. [[TC: O(N) | SC: O(1)] `count`, `count_if`, `find`](#22-tc-on--sc-o1-count-count_if-find)
-23. [[TC: O(log N) | SC: O(1)] `binary_search`](#23-tc-olog-n--sc-o1-binary_search)
-24. [[TC: O(log N) | SC: O(N)] `multiset`](#24-tc-olog-n--sc-on-multiset)
-25. [[TC: O(N/64) | SC: O(N/64)] `bitset`](#25-tc-on64--sc-on64-bitset)
-26. [[TC: O(1) call | SC: O(depth)] `function<>` for recursive lambdas](#26-tc-o1-call--sc-odepth-function-for-recursive-lambdas)
-27. [[TC: O(1) | SC: O(1)] `tie`, `tuple`](#27-tc-o1--sc-o1-tie-tuple)
-28. [[TC: O(N) | SC: O(1) aux] `partial_sum`](#28-tc-on--sc-o1-aux-partial_sum)
-29. [[TC: O(1) | SC: O(1)] `sqrt`, `pow`, `abs`, `ceil`, `floor`](#29-tc-o1--sc-o1-sqrt-pow-abs-ceil-floor)
-30. [[TC: O(1) | SC: O(1)] `isdigit`, `isalpha`, `tolower`, `toupper`](#30-tc-o1--sc-o1-isdigit-isalpha-tolower-toupper)
-31. [[TC: O(L) | SC: O(L)] `getline`, `stringstream` / `istringstream`](#31-tc-ol--sc-ol-getline-stringstream--istringstream)
-32. [[TC: O(1) | SC: O(1)] `mt19937`, `uniform_int_distribution`](#32-tc-o1--sc-o1-mt19937-uniform_int_distribution)
-33. [[TC: O(N) | SC: O(1)] `rotate`](#33-tc-on--sc-o1-rotate)
-34. [[TC: O(N) | SC: O(1)] `all_of`, `any_of`, `none_of`](#34-tc-on--sc-o1-all_of-any_of-none_of)
-35. [[TC: O(N) avg | SC: O(log N)] `nth_element`](#35-tc-on-avg--sc-olog-n-nth_element)
-36. [[TC: O(1) | SC: 16B] `__int128`](#36-tc-o1--sc-16b-__int128)
-37. [[TC: O(log N) / O(1) | SC: O(1)] `emplace`, `m.contains()`, `try_emplace`](#37-tc-olog-n--o1--sc-o1-emplace-mcontains-try_emplace)
-38. [[TC: O(1) | SC: O(1)] `rbegin`, `*s.rbegin()`](#38-tc-o1--sc-o1-rbegin-srbegin)
-39. [[TC: O(1) / O(k) | SC: O(1)] `next`, `prev`, `distance`](#39-tc-o1--ok--sc-o1-next-prev-distance)
-40. [[TC: O(N log N) | SC: O(N)] `stable_sort`](#40-tc-on-log-n--sc-on-stable_sort)
+16. [`*min_element`, `*max_element` [TC: O(N) | SC: O(1)]](#16-min_element-max_element)
+17. [`unique` + `erase` [TC: O(N) | SC: O(1)]](#17-unique--erase)
+18. [`iota` [TC: O(N) | SC: O(1)]](#18-iota)
+19. [`gcd`, `lcm` [TC: O(log(min(a, b))) | SC: O(1)]](#19-gcd-lcm)
+20. [`__builtin_popcount(ll)`, `__builtin_ctz`, `__builtin_clz` [TC: O(1) | SC: O(1)]](#20-__builtin_popcountll-__builtin_ctz-__builtin_clz)
+21. [`next_permutation` [TC: O(N) | SC: O(1)]](#21-next_permutation)
+22. [`count`, `count_if`, `find` [TC: O(N) | SC: O(1)]](#22-count-count_if-find)
+23. [`binary_search` [TC: O(log N) | SC: O(1)]](#23-binary_search)
+24. [`multiset` [TC: O(log N) | SC: O(N)]](#24-multiset)
+25. [`bitset` [TC: O(N/64) | SC: O(N/64)]](#25-bitset)
+26. [`function<>` for recursive lambdas [TC: O(1) call | SC: O(depth)]](#26-function-for-recursive-lambdas)
+27. [`tie`, `tuple` [TC: O(1) | SC: O(1)]](#27-tie-tuple)
+28. [`partial_sum` [TC: O(N) | SC: O(1) aux]](#28-partial_sum)
+29. [`sqrt`, `pow`, `abs`, `ceil`, `floor` [TC: O(1) | SC: O(1)]](#29-sqrt-pow-abs-ceil-floor)
+30. [`isdigit`, `isalpha`, `tolower`, `toupper` [TC: O(1) | SC: O(1)]](#30-isdigit-isalpha-tolower-toupper)
+31. [`getline`, `stringstream` / `istringstream` [TC: O(L) | SC: O(L)]](#31-getline-stringstream--istringstream)
+32. [`mt19937`, `uniform_int_distribution` [TC: O(1) | SC: O(1)]](#32-mt19937-uniform_int_distribution)
+33. [`rotate` [TC: O(N) | SC: O(1)]](#33-rotate)
+34. [`all_of`, `any_of`, `none_of` [TC: O(N) | SC: O(1)]](#34-all_of-any_of-none_of)
+35. [`nth_element` [TC: O(N) avg | SC: O(log N)]](#35-nth_element)
+36. [`__int128` [TC: O(1) | SC: 16B]](#36-__int128)
+37. [`emplace`, `m.contains()`, `try_emplace` [TC: O(log N) / O(1) | SC: O(1)]](#37-emplace-mcontains-try_emplace)
+38. [`rbegin`, `*s.rbegin()` [TC: O(1) | SC: O(1)]](#38-rbegin-srbegin)
+39. [`next`, `prev`, `distance` [TC: O(1) / O(k) | SC: O(1)]](#39-next-prev-distance)
+40. [`stable_sort` [TC: O(N log N) | SC: O(N)]](#40-stable_sort)
 
 ---
 
-### 16. [TC: O(N) | SC: O(1)] `*min_element`, `*max_element`
+<a id="16-min_element-max_element"></a>
+### 16. `*min_element`, `*max_element` [TC: O(N) | SC: O(1)]
 - **Time Complexity:** $O(N)$
 - **Space Complexity:** $O(1)$
 - **Header:** `<algorithm>`
@@ -57,7 +58,8 @@ int main() {
 
 ---
 
-### 17. [TC: O(N) | SC: O(1)] `unique` + `erase`
+<a id="17-unique--erase"></a>
+### 17. `unique` + `erase` [TC: O(N) | SC: O(1)]
 - **Time Complexity:** $O(N)$
 - **Space Complexity:** $O(1)$ in-place
 - **Header:** `<algorithm>`, `<vector>`
@@ -81,7 +83,8 @@ int main() {
 
 ---
 
-### 18. [TC: O(N) | SC: O(1)] `iota`
+<a id="18-iota"></a>
+### 18. `iota` [TC: O(N) | SC: O(1)]
 - **Time Complexity:** $O(N)$
 - **Space Complexity:** $O(1)$ auxiliary
 - **Header:** `<numeric>`
@@ -104,7 +107,8 @@ int main() {
 
 ---
 
-### 19. [TC: O(log(min(a, b))) | SC: O(1)] `gcd`, `lcm`
+<a id="19-gcd-lcm"></a>
+### 19. `gcd`, `lcm` [TC: O(log(min(a, b))) | SC: O(1)]
 - **Time Complexity:** $O(\log(\min(a, b)))$ via Euclidean algorithm
 - **Space Complexity:** $O(1)$
 - **Header:** `<numeric>`
@@ -129,7 +133,8 @@ LCM: 36
 
 ---
 
-### 20. [TC: O(1) | SC: O(1)] `__builtin_popcount(ll)`, `__builtin_ctz`, `__builtin_clz`
+<a id="20-__builtin_popcountll-__builtin_ctz-__builtin_clz"></a>
+### 20. `__builtin_popcount(ll)`, `__builtin_ctz`, `__builtin_clz` [TC: O(1) | SC: O(1)]
 - **Time Complexity:** $O(1)$ single CPU instruction
 - **Space Complexity:** $O(1)$
 - **Header:** Compiler built-in (GCC/Clang)
@@ -157,7 +162,8 @@ popcountll: 1
 
 ---
 
-### 21. [TC: O(N) | SC: O(1)] `next_permutation`
+<a id="21-next_permutation"></a>
+### 21. `next_permutation` [TC: O(N) | SC: O(1)]
 - **Time Complexity:** $O(N)$ worst-case; amortized $O(1)$ over all $N!$ permutations
 - **Space Complexity:** $O(1)$ in-place
 - **Header:** `<algorithm>`
@@ -181,7 +187,8 @@ int main() {
 
 ---
 
-### 22. [TC: O(N) | SC: O(1)] `count`, `count_if`, `find`
+<a id="22-count-count_if-find"></a>
+### 22. `count`, `count_if`, `find` [TC: O(N) | SC: O(1)]
 - **Time Complexity:** $O(N)$
 - **Space Complexity:** $O(1)$
 - **Header:** `<algorithm>`
@@ -206,7 +213,8 @@ int main() {
 
 ---
 
-### 23. [TC: O(log N) | SC: O(1)] `binary_search`
+<a id="23-binary_search"></a>
+### 23. `binary_search` [TC: O(log N) | SC: O(1)]
 - **Time Complexity:** $O(\log N)$ on random access iterators
 - **Space Complexity:** $O(1)$
 - **Header:** `<algorithm>`
@@ -235,7 +243,8 @@ int main() {
 
 ---
 
-### 24. [TC: O(log N) | SC: O(N)] `multiset`
+<a id="24-multiset"></a>
+### 24. `multiset` [TC: O(log N) | SC: O(N)]
 - **Time Complexity:** $O(\log N)$ for `insert`, `find`, and single-element `erase(iterator)`; $O(\log N + K)$ for `erase(val)` where $K$ copies exist.
 - **Space Complexity:** $O(N)$
 - **Header:** `<set>`
@@ -258,7 +267,8 @@ int main() {
 
 ---
 
-### 25. [TC: O(N/64) | SC: O(N/64)] `bitset`
+<a id="25-bitset"></a>
+### 25. `bitset` [TC: O(N/64) | SC: O(N/64)]
 - **Time Complexity:** $O(N/64)$ for bitwise ops (`&`, `|`, `^`, shift); $O(1)$ for single bit `test`, `set`, `flip`.
 - **Space Complexity:** $O(N/64)$ bytes ($N$ bits stored packed).
 - **Header:** `<bitset>`
@@ -286,7 +296,8 @@ Flipped: 01001101
 
 ---
 
-### 26. [TC: O(1) call | SC: O(depth)] `function<>` for recursive lambdas
+<a id="26-function-for-recursive-lambdas"></a>
+### 26. `function<>` for recursive lambdas [TC: O(1) call | SC: O(depth)]
 - **Time Complexity:** $O(1)$ dispatch overhead per invocation.
 - **Space Complexity:** $O(\text{recursion depth})$ on call stack.
 - **Header:** `<functional>`
@@ -310,7 +321,8 @@ int main() {
 
 ---
 
-### 27. [TC: O(1) | SC: O(1)] `tie`, `tuple`
+<a id="27-tie-tuple"></a>
+### 27. `tie`, `tuple` [TC: O(1) | SC: O(1)]
 - **Time Complexity:** $O(K)$ where $K$ is the number of elements in the tuple.
 - **Space Complexity:** $O(1)$
 - **Header:** `<tuple>`
@@ -336,7 +348,8 @@ int main() {
 
 ---
 
-### 28. [TC: O(N) | SC: O(1) aux] `partial_sum`
+<a id="28-partial_sum"></a>
+### 28. `partial_sum` [TC: O(N) | SC: O(1) aux]
 - **Time Complexity:** $O(N)$
 - **Space Complexity:** $O(1)$ auxiliary memory (or $O(N)$ for destination buffer).
 - **Header:** `<numeric>`
@@ -360,7 +373,8 @@ int main() {
 
 ---
 
-### 29. [TC: O(1) | SC: O(1)] `sqrt`, `pow`, `abs`, `ceil`, `floor`
+<a id="29-sqrt-pow-abs-ceil-floor"></a>
+### 29. `sqrt`, `pow`, `abs`, `ceil`, `floor` [TC: O(1) | SC: O(1)]
 - **Time Complexity:** $O(1)$ native CPU instructions.
 - **Space Complexity:** $O(1)$
 - **Header:** `<cmath>`, `<cstdlib>`
@@ -390,7 +404,8 @@ abs(-15): 15
 
 ---
 
-### 30. [TC: O(1) | SC: O(1)] `isdigit`, `isalpha`, `tolower`, `toupper`
+<a id="30-isdigit-isalpha-tolower-toupper"></a>
+### 30. `isdigit`, `isalpha`, `tolower`, `toupper` [TC: O(1) | SC: O(1)]
 - **Time Complexity:** $O(1)$ table lookup / arithmetic.
 - **Space Complexity:** $O(1)$
 - **Header:** `<cctype>`
@@ -405,7 +420,6 @@ int main() {
     std::cout << "isdigit('7'): " << (bool)std::isdigit(c1) << "\n";
     std::cout << "isalpha('A'): " << (bool)std::isalpha(c2) << "\n";
     std::cout << "tolower('A'): " << (char)std::tolower(c2) << "\n";
-    std::toupper('b');
     std::cout << "toupper('b'): " << (char)std::toupper('b') << "\n";
 }
 ```
@@ -420,7 +434,8 @@ toupper('b'): B
 
 ---
 
-### 31. [TC: O(L) | SC: O(L)] `getline`, `stringstream` / `istringstream`
+<a id="31-getline-stringstream--istringstream"></a>
+### 31. `getline`, `stringstream` / `istringstream` [TC: O(L) | SC: O(L)]
 - **Time Complexity:** $O(L)$ where $L$ is the number of characters processed.
 - **Space Complexity:** $O(L)$ internal stream buffer.
 - **Header:** `<string>`, `<sstream>`
@@ -450,7 +465,8 @@ int main() {
 
 ---
 
-### 32. [TC: O(1) | SC: O(1)] `mt19937`, `uniform_int_distribution`
+<a id="32-mt19937-uniform_int_distribution"></a>
+### 32. `mt19937`, `uniform_int_distribution` [TC: O(1) | SC: O(1)]
 - **Time Complexity:** $O(1)$ per random number generated.
 - **Space Complexity:** $O(1)$ generator state buffer (approx 2.5 KB).
 - **Header:** `<random>`, `<chrono>`
@@ -473,7 +489,8 @@ int main() {
 
 ---
 
-### 33. [TC: O(N) | SC: O(1)] `rotate`
+<a id="33-rotate"></a>
+### 33. `rotate` [TC: O(N) | SC: O(1)]
 - **Time Complexity:** $O(N)$
 - **Space Complexity:** $O(1)$ in-place
 - **Header:** `<algorithm>`
@@ -497,7 +514,8 @@ int main() {
 
 ---
 
-### 34. [TC: O(N) | SC: O(1)] `all_of`, `any_of`, `none_of`
+<a id="34-all_of-any_of-none_of"></a>
+### 34. `all_of`, `any_of`, `none_of` [TC: O(N) | SC: O(1)]
 - **Time Complexity:** $O(N)$ worst-case; short-circuits as soon as result is determined.
 - **Space Complexity:** $O(1)$
 - **Header:** `<algorithm>`
@@ -522,7 +540,8 @@ int main() {
 
 ---
 
-### 35. [TC: O(N) avg | SC: O(log N)] `nth_element`
+<a id="35-nth_element"></a>
+### 35. `nth_element` [TC: O(N) avg | SC: O(log N)]
 - **Time Complexity:** $O(N)$ average and $O(N)$ worst-case via Introselect.
 - **Space Complexity:** $O(\log N)$ recursive call stack.
 - **Header:** `<algorithm>`
@@ -546,7 +565,8 @@ int main() {
 
 ---
 
-### 36. [TC: O(1) | SC: 16B] `__int128`
+<a id="36-__int128"></a>
+### 36. `__int128` [TC: O(1) | SC: 16B]
 - **Time Complexity:** $O(1)$ arithmetic operations.
 - **Space Complexity:** 16 bytes (128 bits) per variable.
 - **Header:** Built-in GCC extension
@@ -571,7 +591,8 @@ int main() {
 
 ---
 
-### 37. [TC: O(log N) / O(1) | SC: O(1)] `emplace`, `m.contains()`, `try_emplace`
+<a id="37-emplace-mcontains-try_emplace"></a>
+### 37. `emplace`, `m.contains()`, `try_emplace` [TC: O(log N) / O(1) | SC: O(1)]
 - **Time Complexity:** `std::map`: $O(\log N)$; `std::unordered_map`: $O(1)$ average.
 - **Space Complexity:** $O(1)$ auxiliary per call.
 - **Header:** `<map>`, `<unordered_map>`
@@ -601,7 +622,8 @@ mp[1]: one, mp[2]: two
 
 ---
 
-### 38. [TC: O(1) | SC: O(1)] `rbegin`, `*s.rbegin()`
+<a id="38-rbegin-srbegin"></a>
+### 38. `rbegin`, `*s.rbegin()` [TC: O(1) | SC: O(1)]
 - **Time Complexity:** $O(1)$
 - **Space Complexity:** $O(1)$
 - **Header:** `<set>`, `<vector>`, `<iterator>`
@@ -624,7 +646,8 @@ int main() {
 
 ---
 
-### 39. [TC: O(1) / O(k) | SC: O(1)] `next`, `prev`, `distance`
+<a id="39-next-prev-distance"></a>
+### 39. `next`, `prev`, `distance` [TC: O(1) / O(k) | SC: O(1)]
 - **Time Complexity:** `next`/`prev`: $O(1)$ on random-access iterators, $O(k)$ on bidirectional/forward; `distance`: $O(1)$ on random-access, $O(N)$ on others.
 - **Space Complexity:** $O(1)$
 - **Header:** `<iterator>`
@@ -654,7 +677,8 @@ distance: 3
 
 ---
 
-### 40. [TC: O(N log N) | SC: O(N)] `stable_sort`
+<a id="40-stable_sort"></a>
+### 40. `stable_sort` [TC: O(N log N) | SC: O(N)]
 - **Time Complexity:** $O(N \log N)$ with extra buffer, $O(N \log^2 N)$ in-place.
 - **Space Complexity:** $O(N)$ temporary buffer.
 - **Header:** `<algorithm>`

@@ -5,28 +5,29 @@ These functions and data structures are situational, but when needed, they can t
 ---
 
 ## Table of Contents
-41. [[TC: O(log N) | SC: O(N)] `oset` (`find_by_order`, `order_of_key`)](#41-tc-olog-n--sc-on-oset-find_by_order-order_of_key)
-42. [[TC: O(1) | SC: O(1)] `__builtin_add_overflow`, `__builtin_mul_overflow`](#42-tc-o1--sc-o1-__builtin_add_overflow-__builtin_mul_overflow)
-43. [[TC: O(log N) | SC: O(1)] `partition_point`](#43-tc-olog-n--sc-o1-partition_point)
-44. [[TC: O(N log N) | SC: O(log N)] `ranges::sort` and C++20 Ranges](#44-tc-on-log-n--sc-olog-n-rangessort-and-c20-ranges)
-45. [[TC: O(log N) | SC: O(1)] `equal_range`](#45-tc-olog-n--sc-o1-equal_range)
-46. [[TC: O(N) / O(log N) | SC: O(1)] `make_heap`, `push_heap`, `pop_heap`](#46-tc-on--olog-n--sc-o1-make_heap-push_heap-pop_heap)
-47. [[TC: O(N + M) | SC: O(1) aux] `set_intersection`, `set_union`, `set_difference`](#47-tc-on--m--sc-o1-aux-set_intersection-set_union-set_difference)
-48. [[TC: O(N) | SC: O(1) aux] `transform`, `for_each`](#48-tc-on--sc-o1-aux-transform-for_each)
-49. [[TC: O(N) | SC: O(1) aux] `adjacent_difference`](#49-tc-on--sc-o1-aux-adjacent_difference)
-50. [[TC: O(N) | SC: O(1)] `inner_product`](#50-tc-on--sc-o1-inner_product)
-51. [[TC: O(1) | SC: O(1)] `clamp`](#51-tc-o1--sc-o1-clamp)
-52. [[TC: O(N) | SC: O(1)] `shuffle`](#52-tc-on--sc-o1-shuffle)
-53. [[TC: O(N log K) | SC: O(1)] `partial_sort`](#53-tc-on-log-k--sc-o1-partial_sort)
-54. [[TC: O(min(N, M)) | SC: O(1)] `lexicographical_compare`](#54-tc-ominn-m--sc-o1-lexicographical_compare)
-55. [[TC: O(1) | SC: O(1)] `bit_width`, `has_single_bit`, `countr_zero`](#55-tc-o1--sc-o1-bit_width-has_single_bit-countr_zero)
-56. [[TC: O(1) avg | SC: O(N)] `gp_hash_table` (PB_DS)](#56-tc-o1-avg--sc-on-gp_hash_table-pb_ds)
-57. [[TC: O(1) | SC: O(1)] `chrono::steady_clock`](#57-tc-o1--sc-o1-chronosteady_clock)
-58. [[TC: O(1) | SC: O(1)] `assert`](#58-tc-o1--sc-o1-assert)
+41. [`oset` (`find_by_order`, `order_of_key`) [TC: O(log N) | SC: O(N)]](#41-oset-find_by_order-order_of_key)
+42. [`__builtin_add_overflow`, `__builtin_mul_overflow` [TC: O(1) | SC: O(1)]](#42-__builtin_add_overflow-__builtin_mul_overflow)
+43. [`partition_point` [TC: O(log N) | SC: O(1)]](#43-partition_point)
+44. [`ranges::sort` and C++20 Ranges [TC: O(N log N) | SC: O(log N)]](#44-rangessort-and-c20-ranges)
+45. [`equal_range` [TC: O(log N) | SC: O(1)]](#45-equal_range)
+46. [`make_heap`, `push_heap`, `pop_heap` [TC: O(N) / O(log N) | SC: O(1)]](#46-make_heap-push_heap-pop_heap)
+47. [`set_intersection`, `set_union`, `set_difference` [TC: O(N + M) | SC: O(1) aux]](#47-set_intersection-set_union-set_difference)
+48. [`transform`, `for_each` [TC: O(N) | SC: O(1) aux]](#48-transform-for_each)
+49. [`adjacent_difference` [TC: O(N) | SC: O(1) aux]](#49-adjacent_difference)
+50. [`inner_product` [TC: O(N) | SC: O(1)]](#50-inner_product)
+51. [`clamp` [TC: O(1) | SC: O(1)]](#51-clamp)
+52. [`shuffle` [TC: O(N) | SC: O(1)]](#52-shuffle)
+53. [`partial_sort` [TC: O(N log K) | SC: O(1)]](#53-partial_sort)
+54. [`lexicographical_compare` [TC: O(min(N, M)) | SC: O(1)]](#54-lexicographical_compare)
+55. [`bit_width`, `has_single_bit`, `countr_zero` [TC: O(1) | SC: O(1)]](#55-bit_width-has_single_bit-countr_zero)
+56. [`gp_hash_table` (PB_DS) [TC: O(1) avg | SC: O(N)]](#56-gp_hash_table-policy-based-data-structures)
+57. [`chrono::steady_clock` [TC: O(1) | SC: O(1)]](#57-chronosteady_clock)
+58. [`assert` [TC: O(1) | SC: O(1)]](#58-assert)
 
 ---
 
-### 41. [TC: O(log N) | SC: O(N)] `oset` (`find_by_order`, `order_of_key`)
+<a id="41-oset-find_by_order-order_of_key"></a>
+### 41. `oset` (`find_by_order`, `order_of_key`) [TC: O(log N) | SC: O(N)]
 - **Time Complexity:** $O(\log N)$ for `order_of_key`, `find_by_order`, `insert`, and `erase`.
 - **Space Complexity:** $O(N)$
 - **Header:** `<ext/pb_ds/assoc_container.hpp>`, `<ext/pb_ds/tree_policy.hpp>`
@@ -61,7 +62,8 @@ Elements < 10: 2
 
 ---
 
-### 42. [TC: O(1) | SC: O(1)] `__builtin_add_overflow`, `__builtin_mul_overflow`
+<a id="42-__builtin_add_overflow-__builtin_mul_overflow"></a>
+### 42. `__builtin_add_overflow`, `__builtin_mul_overflow` [TC: O(1) | SC: O(1)]
 - **Time Complexity:** $O(1)$ single CPU flag inspection.
 - **Space Complexity:** $O(1)$
 - **Header:** Compiler built-in (GCC/Clang)
@@ -83,7 +85,8 @@ int main() {
 
 ---
 
-### 43. [TC: O(log N) | SC: O(1)] `partition_point`
+<a id="43-partition_point"></a>
+### 43. `partition_point` [TC: O(log N) | SC: O(1)]
 - **Time Complexity:** $O(\log N)$ on random access iterators.
 - **Space Complexity:** $O(1)$
 - **Header:** `<algorithm>`
@@ -109,7 +112,8 @@ int main() {
 
 ---
 
-### 44. [TC: O(N log N) | SC: O(log N)] `ranges::sort` and C++20 Ranges
+<a id="44-rangessort-and-c20-ranges"></a>
+### 44. `ranges::sort` and C++20 Ranges [TC: O(N log N) | SC: O(log N)]
 - **Time Complexity:** $O(N \log N)$
 - **Space Complexity:** $O(\log N)$
 - **Header:** `<algorithm>`, `<vector>`
@@ -140,7 +144,8 @@ int main() {
 
 ---
 
-### 45. [TC: O(log N) | SC: O(1)] `equal_range`
+<a id="45-equal_range"></a>
+### 45. `equal_range` [TC: O(log N) | SC: O(1)]
 - **Time Complexity:** $O(\log N)$ on random-access iterators.
 - **Space Complexity:** $O(1)$
 - **Header:** `<algorithm>`
@@ -168,7 +173,8 @@ Total 4s: 3
 
 ---
 
-### 46. [TC: O(N) / O(log N) | SC: O(1)] `make_heap`, `push_heap`, `pop_heap`
+<a id="46-make_heap-push_heap-pop_heap"></a>
+### 46. `make_heap`, `push_heap`, `pop_heap` [TC: O(N) / O(log N) | SC: O(1)]
 - **Time Complexity:** `make_heap`: $O(N)$; `push_heap` & `pop_heap`: $O(\log N)$.
 - **Space Complexity:** $O(1)$ in-place auxiliary.
 - **Header:** `<algorithm>`
@@ -203,7 +209,8 @@ New top after pop: 9
 
 ---
 
-### 47. [TC: O(N + M) | SC: O(1) aux] `set_intersection`, `set_union`, `set_difference`
+<a id="47-set_intersection-set_union-set_difference"></a>
+### 47. `set_intersection`, `set_union`, `set_difference` [TC: O(N + M) | SC: O(1) aux]
 - **Time Complexity:** $O(N + M)$ on sorted ranges.
 - **Space Complexity:** $O(1)$ auxiliary (excluding output container).
 - **Header:** `<algorithm>`
@@ -230,7 +237,8 @@ int main() {
 
 ---
 
-### 48. [TC: O(N) | SC: O(1) aux] `transform`, `for_each`
+<a id="48-transform-for_each"></a>
+### 48. `transform`, `for_each` [TC: O(N) | SC: O(1) aux]
 - **Time Complexity:** $O(N)$
 - **Space Complexity:** $O(1)$ auxiliary.
 - **Header:** `<algorithm>`
@@ -255,7 +263,8 @@ int main() {
 
 ---
 
-### 49. [TC: O(N) | SC: O(1) aux] `adjacent_difference`
+<a id="49-adjacent_difference"></a>
+### 49. `adjacent_difference` [TC: O(N) | SC: O(1) aux]
 - **Time Complexity:** $O(N)$
 - **Space Complexity:** $O(1)$ auxiliary memory.
 - **Header:** `<numeric>`
@@ -280,7 +289,8 @@ int main() {
 
 ---
 
-### 50. [TC: O(N) | SC: O(1)] `inner_product`
+<a id="50-inner_product"></a>
+### 50. `inner_product` [TC: O(N) | SC: O(1)]
 - **Time Complexity:** $O(N)$
 - **Space Complexity:** $O(1)$
 - **Header:** `<numeric>`
@@ -304,7 +314,8 @@ int main() {
 
 ---
 
-### 51. [TC: O(1) | SC: O(1)] `clamp`
+<a id="51-clamp"></a>
+### 51. `clamp` [TC: O(1) | SC: O(1)]
 - **Time Complexity:** $O(1)$
 - **Space Complexity:** $O(1)$
 - **Header:** `<algorithm>`
@@ -325,7 +336,8 @@ int main() {
 
 ---
 
-### 52. [TC: O(N) | SC: O(1)] `shuffle`
+<a id="52-shuffle"></a>
+### 52. `shuffle` [TC: O(N) | SC: O(1)]
 - **Time Complexity:** $O(N)$
 - **Space Complexity:** $O(1)$ in-place.
 - **Header:** `<algorithm>`, `<random>`
@@ -350,7 +362,8 @@ int main() {
 
 ---
 
-### 53. [TC: O(N log K) | SC: O(1)] `partial_sort`
+<a id="53-partial_sort"></a>
+### 53. `partial_sort` [TC: O(N log K) | SC: O(1)]
 - **Time Complexity:** $O(N \log K)$ where $K$ is the distance from `first` to `middle`.
 - **Space Complexity:** $O(1)$ in-place auxiliary.
 - **Header:** `<algorithm>`
@@ -375,7 +388,8 @@ int main() {
 
 ---
 
-### 54. [TC: O(min(N, M)) | SC: O(1)] `lexicographical_compare`
+<a id="54-lexicographical_compare"></a>
+### 54. `lexicographical_compare` [TC: O(min(N, M)) | SC: O(1)]
 - **Time Complexity:** $O(\min(N, M))$
 - **Space Complexity:** $O(1)$
 - **Header:** `<algorithm>`
@@ -399,7 +413,8 @@ int main() {
 
 ---
 
-### 55. [TC: O(1) | SC: O(1)] `bit_width`, `has_single_bit`, `countr_zero`
+<a id="55-bit_width-has_single_bit-countr_zero"></a>
+### 55. `bit_width`, `has_single_bit`, `countr_zero` [TC: O(1) | SC: O(1)]
 - **Time Complexity:** $O(1)$ single CPU instruction.
 - **Space Complexity:** $O(1)$
 - **Header:** `<bit>`
@@ -426,7 +441,8 @@ countr_zero(16): 4
 
 ---
 
-### 56. [TC: O(1) avg | SC: O(N)] `gp_hash_table` (PB_DS)
+<a id="56-gp_hash_table-policy-based-data-structures"></a>
+### 56. `gp_hash_table` (PB_DS) [TC: O(1) avg | SC: O(N)]
 - **Time Complexity:** $O(1)$ average for insertions and lookups (3-5x faster constant factors than `std::unordered_map`).
 - **Space Complexity:** $O(N)$
 - **Header:** `<ext/pb_ds/assoc_container.hpp>`
@@ -451,7 +467,8 @@ int main() {
 
 ---
 
-### 57. [TC: O(1) | SC: O(1)] `chrono::steady_clock`
+<a id="57-chronosteady_clock"></a>
+### 57. `chrono::steady_clock` [TC: O(1) | SC: O(1)]
 - **Time Complexity:** $O(1)$ native clock read.
 - **Space Complexity:** $O(1)$
 - **Header:** `<chrono>`
@@ -478,7 +495,8 @@ int main() {
 
 ---
 
-### 58. [TC: O(1) | SC: O(1)] `assert`
+<a id="58-assert"></a>
+### 58. `assert` [TC: O(1) | SC: O(1)]
 - **Time Complexity:** $O(1)$ evaluation (compiled out in release mode with `-DNDEBUG`).
 - **Space Complexity:** $O(1)$
 - **Header:** `<cassert>`

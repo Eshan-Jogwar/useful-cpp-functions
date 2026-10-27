@@ -5,25 +5,26 @@ These functions and features are the absolute bedrock of competitive programming
 ---
 
 ## Table of Contents
-1. [[TC: O(N log N) | SC: O(log N)] `sort` (with custom comparator / lambda)](#1-tc-on-log-n--sc-olog-n-sort-with-custom-comparator--lambda)
-2. [[TC: O(1) amortized | SC: O(N)] `vector`, `pair`, `emplace_back`](#2-tc-o1-amortized--sc-on-vector-pair-emplace_back)
-3. [[TC: O(log N) / O(1) | SC: O(N)] `map`, `set`, `unordered_map`, `unordered_set`](#3-tc-olog-n--o1--sc-on-map-set-unordered_map-unordered_set)
-4. [[TC: O(log N) | SC: O(N)] `priority_queue` (min-heap via `greater<>`)](#4-tc-olog-n--sc-on-priority_queue-min-heap-via-greater)
-5. [[TC: O(log N) | SC: O(1)] `lower_bound` / `upper_bound`](#5-tc-olog-n--sc-o1-lower_bound--upper_bound)
-6. [[TC: O(1) | SC: O(1)] `min`, `max`, `swap`](#6-tc-o1--sc-o1-min-max-swap)
-7. [[TC: O(N) | SC: O(1)] `reverse`](#7-tc-on--sc-o1-reverse)
-8. [[TC: O(N) | SC: O(1)] `accumulate` (with `0LL`)](#8-tc-on--sc-o1-accumulate-with-0ll)
-9. [[TC: O(1) | SC: O(1)] `ios::sync_with_stdio(false); cin.tie(nullptr);`](#9-tc-o1--sc-o1-iossync_with_stdiofalse-cintienullptr)
-10. [[TC: O(1) | SC: O(N)] `queue`, `stack`, `deque`](#10-tc-o1--sc-on-queue-stack-deque)
-11. [[TC: O(1) | SC: O(1)] `auto [a, b] = p;` (Structured Bindings)](#11-tc-o1--sc-o1-auto-a-b--p-structured-bindings)
-12. [[TC: O(1) | SC: O(1)] `INT_MAX`, `LLONG_MAX`](#12-tc-o1--sc-o1-int_max-llong_max)
-13. [[TC: O(N) | SC: O(1)] `memset`, `fill`](#13-tc-on--sc-o1-memset-fill)
-14. [[TC: O(len) | SC: O(len)] `to_string`, `stoi`, `substr`](#14-tc-olen--sc-olen-to_string-stoi-substr)
-15. [[TC: O(1) | SC: O(1)] `#define all(x)`](#15-tc-o1--sc-o1-define-allx)
+1. [`sort` (with custom comparator / lambda) [TC: O(N log N) | SC: O(log N)]](#1-sort-with-custom-comparator--lambda)
+2. [`vector`, `pair`, `emplace_back` [TC: O(1) amortized | SC: O(N)]](#2-vector-pair-emplace_back)
+3. [`map`, `set`, `unordered_map`, `unordered_set` [TC: O(log N) / O(1) | SC: O(N)]](#3-map-set-unordered_map-unordered_set)
+4. [`priority_queue` (min-heap via `greater<>`) [TC: O(log N) | SC: O(N)]](#4-priority_queue-min-heap-via-greater)
+5. [`lower_bound` / `upper_bound` [TC: O(log N) | SC: O(1)]](#5-lower_bound--upper_bound)
+6. [`min`, `max`, `swap` [TC: O(1) | SC: O(1)]](#6-min-max-swap)
+7. [`reverse` [TC: O(N) | SC: O(1)]](#7-reverse)
+8. [`accumulate` (with `0LL`) [TC: O(N) | SC: O(1)]](#8-accumulate-with-0ll)
+9. [`ios::sync_with_stdio(false); cin.tie(nullptr);` [TC: O(1) | SC: O(1)]](#9-iossync_with_stdiofalse-cintienullptr)
+10. [`queue`, `stack`, `deque` [TC: O(1) | SC: O(N)]](#10-queue-stack-deque)
+11. [`auto [a, b] = p;` (Structured Bindings) [TC: O(1) | SC: O(1)]](#11-auto-a-b--p-structured-bindings)
+12. [`INT_MAX`, `LLONG_MAX` [TC: O(1) | SC: O(1)]](#12-int_max-llong_max)
+13. [`memset`, `fill` [TC: O(N) | SC: O(1)]](#13-memset-fill)
+14. [`to_string`, `stoi`, `substr` [TC: O(len) | SC: O(len)]](#14-to_string-stoi-substr)
+15. [`#define all(x)` [TC: O(1) | SC: O(1)]](#15-define-allx)
 
 ---
 
-### 1. [TC: O(N log N) | SC: O(log N)] `sort` (with custom comparator / lambda)
+<a id="1-sort-with-custom-comparator--lambda"></a>
+### 1. `sort` (with custom comparator / lambda) [TC: O(N log N) | SC: O(log N)]
 - **Time Complexity:** $O(N \log N)$
 - **Space Complexity:** $O(\log N)$ auxiliary (introsort recursion stack)
 - **Header:** `<algorithm>`
@@ -53,7 +54,8 @@ int main() {
 
 ---
 
-### 2. [TC: O(1) amortized | SC: O(N)] `vector`, `pair`, `emplace_back`
+<a id="2-vector-pair-emplace_back"></a>
+### 2. `vector`, `pair`, `emplace_back` [TC: O(1) amortized | SC: O(N)]
 - **Time Complexity:** $O(1)$ amortized for `emplace_back` and random access; $O(N)$ when reallocation occurs.
 - **Space Complexity:** $O(N)$
 - **Header:** `<vector>`, `<utility>`
@@ -80,7 +82,8 @@ int main() {
 
 ---
 
-### 3. [TC: O(log N) / O(1) | SC: O(N)] `map`, `set`, `unordered_map`, `unordered_set`
+<a id="3-map-set-unordered_map-unordered_set"></a>
+### 3. `map`, `set`, `unordered_map`, `unordered_set` [TC: O(log N) / O(1) | SC: O(N)]
 - **Time Complexity:** `map`/`set`: $O(\log N)$ find/insert/delete; `unordered_map`/`unordered_set`: $O(1)$ average, $O(N)$ worst-case.
 - **Space Complexity:** $O(N)$
 - **Header:** `<map>`, `<set>`, `<unordered_map>`, `<unordered_set>`
@@ -112,7 +115,8 @@ set: 1 3 5
 
 ---
 
-### 4. [TC: O(log N) | SC: O(N)] `priority_queue` (min-heap via `greater<>`)
+<a id="4-priority_queue-min-heap-via-greater"></a>
+### 4. `priority_queue` (min-heap via `greater<>`) [TC: O(log N) | SC: O(N)]
 - **Time Complexity:** $O(1)$ peek (`top`), $O(\log N)$ `push` and `pop`, $O(N)$ for range constructor (heapify).
 - **Space Complexity:** $O(N)$
 - **Header:** `<queue>`
@@ -139,7 +143,8 @@ int main() {
 
 ---
 
-### 5. [TC: O(log N) | SC: O(1)] `lower_bound` / `upper_bound`
+<a id="5-lower_bound--upper_bound"></a>
+### 5. `lower_bound` / `upper_bound` [TC: O(log N) | SC: O(1)]
 - **Time Complexity:** $O(\log N)$ on random access iterators (vector, array); $O(N)$ on forward lists/sets.
 - **Space Complexity:** $O(1)$
 - **Header:** `<algorithm>`
@@ -168,7 +173,8 @@ upper_bound index: 4
 
 ---
 
-### 6. [TC: O(1) | SC: O(1)] `min`, `max`, `swap`
+<a id="6-min-max-swap"></a>
+### 6. `min`, `max`, `swap` [TC: O(1) | SC: O(1)]
 - **Time Complexity:** $O(1)$ (or $O(K)$ for initializer list of $K$ elements).
 - **Space Complexity:** $O(1)$
 - **Header:** `<algorithm>`, `<utility>`
@@ -197,7 +203,8 @@ a: 27, b: 15
 
 ---
 
-### 7. [TC: O(N) | SC: O(1)] `reverse`
+<a id="7-reverse"></a>
+### 7. `reverse` [TC: O(N) | SC: O(1)]
 - **Time Complexity:** $O(N)$ where $N$ is the number of elements in the range.
 - **Space Complexity:** $O(1)$ in-place.
 - **Header:** `<algorithm>`
@@ -219,7 +226,8 @@ int main() {
 
 ---
 
-### 8. [TC: O(N) | SC: O(1)] `accumulate` (with `0LL`)
+<a id="8-accumulate-with-0ll"></a>
+### 8. `accumulate` (with `0LL`) [TC: O(N) | SC: O(1)]
 - **Time Complexity:** $O(N)$
 - **Space Complexity:** $O(1)$
 - **Header:** `<numeric>`
@@ -242,7 +250,8 @@ int main() {
 
 ---
 
-### 9. [TC: O(1) | SC: O(1)] `ios::sync_with_stdio(false); cin.tie(nullptr);`
+<a id="9-iossync_with_stdiofalse-cintienullptr"></a>
+### 9. `ios::sync_with_stdio(false); cin.tie(nullptr);` [TC: O(1) | SC: O(1)]
 - **Time Complexity:** $O(1)$
 - **Space Complexity:** $O(1)$
 - **Header:** `<iostream>`
@@ -266,7 +275,8 @@ int main() {
 
 ---
 
-### 10. [TC: O(1) | SC: O(N)] `queue`, `stack`, `deque`
+<a id="10-queue-stack-deque"></a>
+### 10. `queue`, `stack`, `deque` [TC: O(1) | SC: O(N)]
 - **Time Complexity:** $O(1)$ for push, pop, front, back, top.
 - **Space Complexity:** $O(N)$ where $N$ is the number of stored elements.
 - **Header:** `<queue>`, `<stack>`, `<deque>`
@@ -298,7 +308,8 @@ deque back: 200
 
 ---
 
-### 11. [TC: O(1) | SC: O(1)] `auto [a, b] = p;` (Structured Bindings)
+<a id="11-auto-a-b--p-structured-bindings"></a>
+### 11. `auto [a, b] = p;` (Structured Bindings) [TC: O(1) | SC: O(1)]
 - **Time Complexity:** $O(1)$
 - **Space Complexity:** $O(1)$
 - **Header:** Built-in C++17 language feature
@@ -326,7 +337,8 @@ Bob got 88
 
 ---
 
-### 12. [TC: O(1) | SC: O(1)] `INT_MAX`, `LLONG_MAX`
+<a id="12-int_max-llong_max"></a>
+### 12. `INT_MAX`, `LLONG_MAX` [TC: O(1) | SC: O(1)]
 - **Time Complexity:** $O(1)$ (compile-time constants)
 - **Space Complexity:** $O(1)$
 - **Header:** `<climits>`
@@ -355,7 +367,8 @@ INT_MAX: 2147483647
 
 ---
 
-### 13. [TC: O(N) | SC: O(1)] `memset`, `fill`
+<a id="13-memset-fill"></a>
+### 13. `memset`, `fill` [TC: O(N) | SC: O(1)]
 - **Time Complexity:** $O(N)$ where $N$ is byte count for `memset` or element count for `fill`.
 - **Space Complexity:** $O(1)$
 - **Header:** `<cstring>` (for `memset`), `<algorithm>` (for `fill`)
@@ -382,7 +395,8 @@ int main() {
 
 ---
 
-### 14. [TC: O(len) | SC: O(len)] `to_string`, `stoi`, `substr`
+<a id="14-to_string-stoi-substr"></a>
+### 14. `to_string`, `stoi`, `substr` [TC: O(len) | SC: O(len)]
 - **Time Complexity:** `to_string`/`stoi`: $O(D)$ where $D$ is the number of digits; `substr(pos, len)`: $O(\text{len})$.
 - **Space Complexity:** $O(\text{len})$ for new string allocations.
 - **Header:** `<string>`
@@ -406,7 +420,8 @@ int main() {
 
 ---
 
-### 15. [TC: O(1) | SC: O(1)] `#define all(x)`
+<a id="15-define-allx"></a>
+### 15. `#define all(x)` [TC: O(1) | SC: O(1)]
 - **Time Complexity:** $O(1)$ (preprocessor macro expansion)
 - **Space Complexity:** $O(1)$
 - **Header:** Macro definition

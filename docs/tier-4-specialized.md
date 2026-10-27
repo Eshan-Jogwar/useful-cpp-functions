@@ -5,40 +5,41 @@ These functions and language features are rarely required on standard problems, 
 ---
 
 ## Table of Contents
-59. [[TC: O(N * M) | SC: O(1)] `search`](#59-tc-on--m--sc-o1-search)
-60. [[TC: O(N) | SC: O(1)] `adjacent_find`](#60-tc-on--sc-o1-adjacent_find)
-61. [[TC: O(min(N, M)) | SC: O(1)] `mismatch`](#61-tc-ominn-m--sc-o1-mismatch)
-62. [[TC: O(N^2) / O(N) | SC: O(1)] `is_permutation`](#62-tc-on2--on--sc-o1-is_permutation)
-63. [[TC: O(N) | SC: O(1)] `reduce`](#63-tc-on--sc-o1-reduce)
-64. [[TC: O(N) | SC: O(1)] `transform_reduce`](#64-tc-on--sc-o1-transform_reduce)
-65. [[TC: O(N) | SC: O(1) aux] `inclusive_scan`](#65-tc-on--sc-o1-aux-inclusive_scan)
-66. [[TC: O(N) | SC: O(1) aux] `exclusive_scan`](#66-tc-on--sc-o1-aux-exclusive_scan)
-67. [[TC: O(1) | SC: O(1)] `lround`](#67-tc-o1--sc-o1-lround)
-68. [[TC: O(1) | SC: O(1)] `atan2`](#68-tc-o1--sc-o1-atan2)
-69. [[TC: O(1) | SC: O(1)] `hypot`](#69-tc-o1--sc-o1-hypot)
-70. [[TC: O(1) | SC: O(1)] `cbrt`](#70-tc-o1--sc-o1-cbrt)
-71. [[TC: O(1) | SC: O(1)] `fmod`](#71-tc-o1--sc-o1-fmod)
-72. [[TC: O(N) | SC: O(1) aux] `copy_if`](#72-tc-on--sc-o1-aux-copy_if)
-73. [[TC: O(N) | SC: O(1)] `remove_if`](#73-tc-on--sc-o1-remove_if)
-74. [[TC: O(N) | SC: O(1)] `replace`](#74-tc-on--sc-o1-replace)
-75. [[TC: O(N) | SC: O(1)] `generate`](#75-tc-on--sc-o1-generate)
-76. [[TC: O(1) | SC: O(1)] `exchange`](#76-tc-o1--sc-o1-exchange)
-77. [[TC: O(log N) / O(1) | SC: O(1)] `m.extract`](#77-tc-olog-n--o1--sc-o1-mextract)
-78. [[TC: O(N log(M+N)) | SC: O(1)] `m.merge`](#78-tc-on-logmn--sc-o1-mmerge)
-79. [[TC: O(len) | SC: O(1)] `from_chars`](#79-tc-olen--sc-o1-from_chars)
-80. [[TC: O(1) | SC: 16B] `string_view`](#80-tc-o1--sc-16b-string_view)
-81. [[TC: O(1) | SC: 16B] `span`](#81-tc-o1--sc-16b-span)
-82. [[TC: O(1) | SC: O(1)] `optional`](#82-tc-o1--sc-o1-optional)
-83. [[TC: O(1) | SC: O(1)] `variant`](#83-tc-o1--sc-o1-variant)
-84. [[TC: O(1) lazy | SC: O(1)] `views::*` (C++20 Ranges)](#84-tc-o1-lazy--sc-o1-views-c20-ranges)
-85. [[TC: O(1) | SC: O(1)] `rotl`, `rotr`](#85-tc-o1--sc-o1-rotl-rotr)
-86. [[TC: O(1) | SC: O(1)] `bit_ceil`](#86-tc-o1--sc-o1-bit_ceil)
-87. [[TC: O(N/64) | SC: O(1)] `_Find_first`, `_Find_next` (std::bitset)](#87-tc-on64--sc-o1-_find_first-_find_next-stdbitset)
-88. [[TC: O(1) | SC: O(N)] `list`, `forward_list`](#88-tc-o1--sc-on-list-forward_list)
+59. [`search` [TC: O(N * M) | SC: O(1)]](#59-search)
+60. [`adjacent_find` [TC: O(N) | SC: O(1)]](#60-adjacent_find)
+61. [`mismatch` [TC: O(min(N, M)) | SC: O(1)]](#61-mismatch)
+62. [`is_permutation` [TC: O(N^2) / O(N) | SC: O(1)]](#62-is_permutation)
+63. [`reduce` [TC: O(N) | SC: O(1)]](#63-reduce)
+64. [`transform_reduce` [TC: O(N) | SC: O(1)]](#64-transform_reduce)
+65. [`inclusive_scan` [TC: O(N) | SC: O(1) aux]](#65-inclusive_scan)
+66. [`exclusive_scan` [TC: O(N) | SC: O(1) aux]](#66-exclusive_scan)
+67. [`lround` [TC: O(1) | SC: O(1)]](#67-lround)
+68. [`atan2` [TC: O(1) | SC: O(1)]](#68-atan2)
+69. [`hypot` [TC: O(1) | SC: O(1)]](#69-hypot)
+70. [`cbrt` [TC: O(1) | SC: O(1)]](#70-cbrt)
+71. [`fmod` [TC: O(1) | SC: O(1)]](#71-fmod)
+72. [`copy_if` [TC: O(N) | SC: O(1) aux]](#72-copy_if)
+73. [`remove_if` [TC: O(N) | SC: O(1)]](#73-remove_if)
+74. [`replace` [TC: O(N) | SC: O(1)]](#74-replace)
+75. [`generate` [TC: O(N) | SC: O(1)]](#75-generate)
+76. [`exchange` [TC: O(1) | SC: O(1)]](#76-exchange)
+77. [`m.extract` [TC: O(log N) / O(1) | SC: O(1)]](#77-mextract)
+78. [`m.merge` [TC: O(N log(M+N)) | SC: O(1)]](#78-mmerge)
+79. [`from_chars` [TC: O(len) | SC: O(1)]](#79-from_chars)
+80. [`string_view` [TC: O(1) | SC: 16B]](#80-string_view)
+81. [`span` [TC: O(1) | SC: 16B]](#81-span)
+82. [`optional` [TC: O(1) | SC: O(1)]](#82-optional)
+83. [`variant` [TC: O(1) | SC: O(1)]](#83-variant)
+84. [`views::*` (C++20 Ranges) [TC: O(1) lazy | SC: O(1)]](#84-views-c20-ranges)
+85. [`rotl`, `rotr` [TC: O(1) | SC: O(1)]](#85-rotl-rotr)
+86. [`bit_ceil` [TC: O(1) | SC: O(1)]](#86-bit_ceil)
+87. [`_Find_first`, `_Find_next` (std::bitset) [TC: O(N/64) | SC: O(1)]](#87-_find_first-_find_next-stdbitset)
+88. [`list`, `forward_list` [TC: O(1) | SC: O(N)]](#88-list-forward_list)
 
 ---
 
-### 59. [TC: O(N * M) | SC: O(1)] `search`
+<a id="59-search"></a>
+### 59. `search` [TC: O(N * M) | SC: O(1)]
 - **Time Complexity:** $O(N \times M)$ worst-case.
 - **Space Complexity:** $O(1)$
 - **Header:** `<algorithm>`
@@ -62,7 +63,8 @@ int main() {
 
 ---
 
-### 60. [TC: O(N) | SC: O(1)] `adjacent_find`
+<a id="60-adjacent_find"></a>
+### 60. `adjacent_find` [TC: O(N) | SC: O(1)]
 - **Time Complexity:** $O(N)$
 - **Space Complexity:** $O(1)$
 - **Header:** `<algorithm>`
@@ -85,7 +87,8 @@ int main() {
 
 ---
 
-### 61. [TC: O(min(N, M)) | SC: O(1)] `mismatch`
+<a id="61-mismatch"></a>
+### 61. `mismatch` [TC: O(min(N, M)) | SC: O(1)]
 - **Time Complexity:** $O(\min(N, M))$
 - **Space Complexity:** $O(1)$
 - **Header:** `<algorithm>`
@@ -109,7 +112,8 @@ int main() {
 
 ---
 
-### 62. [TC: O(N^2) / O(N) | SC: O(1)] `is_permutation`
+<a id="62-is_permutation"></a>
+### 62. `is_permutation` [TC: O(N^2) / O(N) | SC: O(1)]
 - **Time Complexity:** $O(N^2)$ worst case; $O(N)$ if sequences are already equal.
 - **Space Complexity:** $O(1)$
 - **Header:** `<algorithm>`
@@ -133,7 +137,8 @@ int main() {
 
 ---
 
-### 63. [TC: O(N) | SC: O(1)] `reduce`
+<a id="63-reduce"></a>
+### 63. `reduce` [TC: O(N) | SC: O(1)]
 - **Time Complexity:** $O(N)$
 - **Space Complexity:** $O(1)$
 - **Header:** `<numeric>`
@@ -155,7 +160,8 @@ int main() {
 
 ---
 
-### 64. [TC: O(N) | SC: O(1)] `transform_reduce`
+<a id="64-transform_reduce"></a>
+### 64. `transform_reduce` [TC: O(N) | SC: O(1)]
 - **Time Complexity:** $O(N)$
 - **Space Complexity:** $O(1)$
 - **Header:** `<numeric>`
@@ -178,7 +184,8 @@ int main() {
 
 ---
 
-### 65. [TC: O(N) | SC: O(1) aux] `inclusive_scan`
+<a id="65-inclusive_scan"></a>
+### 65. `inclusive_scan` [TC: O(N) | SC: O(1) aux]
 - **Time Complexity:** $O(N)$
 - **Space Complexity:** $O(1)$ auxiliary memory.
 - **Header:** `<numeric>`
@@ -202,7 +209,8 @@ int main() {
 
 ---
 
-### 66. [TC: O(N) | SC: O(1) aux] `exclusive_scan`
+<a id="66-exclusive_scan"></a>
+### 66. `exclusive_scan` [TC: O(N) | SC: O(1) aux]
 - **Time Complexity:** $O(N)$
 - **Space Complexity:** $O(1)$ auxiliary memory.
 - **Header:** `<numeric>`
@@ -226,7 +234,8 @@ int main() {
 
 ---
 
-### 67. [TC: O(1) | SC: O(1)] `lround`
+<a id="67-lround"></a>
+### 67. `lround` [TC: O(1) | SC: O(1)]
 - **Time Complexity:** $O(1)$ CPU instruction.
 - **Space Complexity:** $O(1)$
 - **Header:** `<cmath>`
@@ -247,7 +256,8 @@ int main() {
 
 ---
 
-### 68. [TC: O(1) | SC: O(1)] `atan2`
+<a id="68-atan2"></a>
+### 68. `atan2` [TC: O(1) | SC: O(1)]
 - **Time Complexity:** $O(1)$
 - **Space Complexity:** $O(1)$
 - **Header:** `<cmath>`
@@ -267,7 +277,8 @@ int main() {
 
 ---
 
-### 69. [TC: O(1) | SC: O(1)] `hypot`
+<a id="69-hypot"></a>
+### 69. `hypot` [TC: O(1) | SC: O(1)]
 - **Time Complexity:** $O(1)$
 - **Space Complexity:** $O(1)$
 - **Header:** `<cmath>`
@@ -289,7 +300,8 @@ int main() {
 
 ---
 
-### 70. [TC: O(1) | SC: O(1)] `cbrt`
+<a id="70-cbrt"></a>
+### 70. `cbrt` [TC: O(1) | SC: O(1)]
 - **Time Complexity:** $O(1)$
 - **Space Complexity:** $O(1)$
 - **Header:** `<cmath>`
@@ -313,7 +325,8 @@ cbrt(-8.0): -2
 
 ---
 
-### 71. [TC: O(1) | SC: O(1)] `fmod`
+<a id="71-fmod"></a>
+### 71. `fmod` [TC: O(1) | SC: O(1)]
 - **Time Complexity:** $O(1)$
 - **Space Complexity:** $O(1)$
 - **Header:** `<cmath>`
@@ -337,7 +350,8 @@ fmod(-5.3, 2.0): -1.3
 
 ---
 
-### 72. [TC: O(N) | SC: O(1) aux] `copy_if`
+<a id="72-copy_if"></a>
+### 72. `copy_if` [TC: O(N) | SC: O(1) aux]
 - **Time Complexity:** $O(N)$
 - **Space Complexity:** $O(1)$ auxiliary.
 - **Header:** `<algorithm>`
@@ -364,7 +378,8 @@ int main() {
 
 ---
 
-### 73. [TC: O(N) | SC: O(1)] `remove_if`
+<a id="73-remove_if"></a>
+### 73. `remove_if` [TC: O(N) | SC: O(1)]
 - **Time Complexity:** $O(N)$
 - **Space Complexity:** $O(1)$ in-place shifting.
 - **Header:** `<algorithm>`
@@ -388,7 +403,8 @@ int main() {
 
 ---
 
-### 74. [TC: O(N) | SC: O(1)] `replace`
+<a id="74-replace"></a>
+### 74. `replace` [TC: O(N) | SC: O(1)]
 - **Time Complexity:** $O(N)$
 - **Space Complexity:** $O(1)$ in-place.
 - **Header:** `<algorithm>`
@@ -411,7 +427,8 @@ int main() {
 
 ---
 
-### 75. [TC: O(N) | SC: O(1)] `generate`
+<a id="75-generate"></a>
+### 75. `generate` [TC: O(N) | SC: O(1)]
 - **Time Complexity:** $O(N)$
 - **Space Complexity:** $O(1)$ auxiliary.
 - **Header:** `<algorithm>`
@@ -439,7 +456,8 @@ int main() {
 
 ---
 
-### 76. [TC: O(1) | SC: O(1)] `exchange`
+<a id="76-exchange"></a>
+### 76. `exchange` [TC: O(1) | SC: O(1)]
 - **Time Complexity:** $O(1)$
 - **Space Complexity:** $O(1)$
 - **Header:** `<utility>`
@@ -461,7 +479,8 @@ int main() {
 
 ---
 
-### 77. [TC: O(log N) / O(1) | SC: O(1)] `m.extract`
+<a id="77-mextract"></a>
+### 77. `m.extract` [TC: O(log N) / O(1) | SC: O(1)]
 - **Time Complexity:** `std::map`/`set`: $O(\log N)$; `std::unordered_map`/`set`: $O(1)$ average.
 - **Space Complexity:** $O(1)$ (no node allocation/deallocation).
 - **Header:** `<map>`, `<set>`
@@ -486,7 +505,8 @@ int main() {
 
 ---
 
-### 78. [TC: O(N log(M+N)) | SC: O(1)] `m.merge`
+<a id="78-mmerge"></a>
+### 78. `m.merge` [TC: O(N log(M+N)) | SC: O(1)]
 - **Time Complexity:** Ordered containers: $O(N \log(M + N))$; Unordered containers: $O(N)$ average.
 - **Space Complexity:** $O(1)$ auxiliary (node pointer transfers).
 - **Header:** `<map>`, `<set>`
@@ -510,7 +530,8 @@ int main() {
 
 ---
 
-### 79. [TC: O(len) | SC: O(1)] `from_chars`
+<a id="79-from_chars"></a>
+### 79. `from_chars` [TC: O(len) | SC: O(1)]
 - **Time Complexity:** $O(D)$ where $D$ is the number of processed digit characters.
 - **Space Complexity:** $O(1)$ zero memory allocation.
 - **Header:** `<charconv>`
@@ -534,7 +555,8 @@ int main() {
 
 ---
 
-### 80. [TC: O(1) | SC: 16B] `string_view`
+<a id="80-string_view"></a>
+### 80. `string_view` [TC: O(1) | SC: 16B]
 - **Time Complexity:** $O(1)$ construction and substring slicing.
 - **Space Complexity:** $O(1)$ (stores only pointer + length, typically 16 bytes).
 - **Header:** `<string_view>`
@@ -558,7 +580,8 @@ int main() {
 
 ---
 
-### 81. [TC: O(1) | SC: 16B] `span`
+<a id="81-span"></a>
+### 81. `span` [TC: O(1) | SC: 16B]
 - **Time Complexity:** $O(1)$ view creation and subspan indexing.
 - **Space Complexity:** $O(1)$ (stores only pointer + size, typically 16 bytes).
 - **Header:** `<span>`
@@ -592,7 +615,8 @@ int main() {
 
 ---
 
-### 82. [TC: O(1) | SC: O(1)] `optional`
+<a id="82-optional"></a>
+### 82. `optional` [TC: O(1) | SC: O(1)]
 - **Time Complexity:** $O(1)$ access, assignment, and boolean checks.
 - **Space Complexity:** $O(1)$ (`sizeof(T) + sizeof(bool)`).
 - **Header:** `<optional>`
@@ -625,7 +649,8 @@ res2 value: 4
 
 ---
 
-### 83. [TC: O(1) | SC: O(1)] `variant`
+<a id="83-variant"></a>
+### 83. `variant` [TC: O(1) | SC: O(1)]
 - **Time Complexity:** $O(1)$ assignment, visitation, and index retrieval.
 - **Space Complexity:** $O(1)$ ($\max(\text{sizeof}(T_i)) + \text{index discriminant}$).
 - **Header:** `<variant>`
@@ -653,7 +678,8 @@ Holds string: hello
 
 ---
 
-### 84. [TC: O(1) lazy | SC: O(1)] `views::*` (C++20 Ranges)
+<a id="84-views-c20-ranges"></a>
+### 84. `views::*` (C++20 Ranges) [TC: O(1) lazy | SC: O(1)]
 - **Time Complexity:** $O(1)$ pipeline creation; $O(1)$ per step on lazy element iteration.
 - **Space Complexity:** $O(1)$ zero temporary container allocation.
 - **Header:** `<ranges>`
@@ -680,7 +706,8 @@ int main() {
 
 ---
 
-### 85. [TC: O(1) | SC: O(1)] `rotl`, `rotr`
+<a id="85-rotl-rotr"></a>
+### 85. `rotl`, `rotr` [TC: O(1) | SC: O(1)]
 - **Time Complexity:** $O(1)$ single CPU bit-rotation instruction.
 - **Space Complexity:** $O(1)$
 - **Header:** `<bit>`
@@ -703,7 +730,8 @@ int main() {
 
 ---
 
-### 86. [TC: O(1) | SC: O(1)] `bit_ceil`
+<a id="86-bit_ceil"></a>
+### 86. `bit_ceil` [TC: O(1) | SC: O(1)]
 - **Time Complexity:** $O(1)$ single CPU instruction.
 - **Space Complexity:** $O(1)$
 - **Header:** `<bit>`
@@ -729,7 +757,8 @@ bit_ceil(17): 32
 
 ---
 
-### 87. [TC: O(N/64) | SC: O(1)] `_Find_first`, `_Find_next` (`std::bitset`)
+<a id="87-_find_first-_find_next-stdbitset"></a>
+### 87. `_Find_first`, `_Find_next` (`std::bitset`) [TC: O(N/64) | SC: O(1)]
 - **Time Complexity:** $O(N/64)$ word-level checks; jumps directly to next set bit.
 - **Space Complexity:** $O(1)$
 - **Header:** `<bitset>`
@@ -755,7 +784,8 @@ int main() {
 
 ---
 
-### 88. [TC: O(1) | SC: O(N)] `list`, `forward_list`
+<a id="88-list-forward_list"></a>
+### 88. `list`, `forward_list` [TC: O(1) | SC: O(N)]
 - **Time Complexity:** $O(1)$ for insertion, deletion, and splicing with given iterator.
 - **Space Complexity:** $O(N)$ with per-node pointer overhead (2 pointers for `list`, 1 pointer for `forward_list`).
 - **Header:** `<list>`, `<forward_list>`
